@@ -1,0 +1,28 @@
+{
+  "book": "《精密注塑工艺与产品缺陷解决方案100例》李忠文",
+  "page_type": "PDF 页与书内页混用",
+  "page_range": [
+    2,
+    228
+  ],
+  "ranges": [
+    {
+      "type": "书内页",
+      "range": [
+        2,
+        202
+      ]
+    },
+    {
+      "type": "PDF 页",
+      "range": [
+        28,
+        228
+      ]
+    }
+  ],
+  "book_page_offset": 26,
+  "pdf_total_pages": 228,
+  "read": [],
+  "note": "本技能**显式混用两套页码**（如「书内 p2–11 / PDF p28–37」）。page_range 取两套并集 [2,228]。未做逐页实读核对，read 留空。"
+}

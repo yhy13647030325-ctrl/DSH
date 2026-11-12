@@ -1,0 +1,12 @@
+{
+  "book": "《SOLIDWORKS 高级曲面教程（2017版）》DS SOLIDWORKS 公司",
+  "page_range": [
+    13,
+    207
+  ],
+  "page_type": "PDF 页",
+  "read": [],
+  "note": "PDF 页，共 209 页，书内页 = PDF 页 − 12。未做逐页实读核对，故 read 留空（只做越界与格式检查）。",
+  "pdf_total_pages": 209,
+  "book_page_offset": 12
+}

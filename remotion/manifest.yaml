@@ -1,0 +1,24 @@
+name: remotion
+version: 1.0.0
+author: 苏木 / 沄
+description: 用 Remotion（React 视频框架）精确控制字幕时机、画面切换与动画进场（第4环）。视频是帧号的函数，逐帧可复现、可参数化批量渲染。含授权陷阱：source-available 而非开源，盈利公司>3人需付费。
+series: AI视频生产线（第4环 · 时间与动画）
+source_tool: Remotion (source-available，非开源)
+triggers: [字幕时机, 动画时间轴, 批量出片, 用代码做视频, Remotion, 数据可视化视频]
+apply_scene: 字幕动画、数据可视化视频、产品演示、批量个性化视频
+dependencies: [node, Chrome Headless Shell, FFmpeg]
+constraints:
+  - 先确认授权：商用团队>3人必须购买 Company License
+  - 时长与帧率必须来自第1环分镜
+  - 复杂叠加场景先小样验证再批量
+  - 不适合实时场景（逐帧渲染的本质限制）
+license_note: 非开源。个人/非营利/≤3人盈利公司免费；>3人需 Company License（Creators $25/月/席位；Automators $0.01/次渲染，最低$100/月；Enterprise $500/月起）
+known_pitfalls:
+  - 看到 GitHub 仓库误以为可随便商用
+  - 逐帧渲染慢，不适合长视频与实时
+  - 元素大量叠加、时序极复杂时可能渲染不完美
+boundaries:
+  - 只管时间轴与动画，不生成画面素材
+  - 授权判断以官方为准
+related: [video-use, heygen, ffmpeg]
+files: [SKILL.md, manifest.yaml]

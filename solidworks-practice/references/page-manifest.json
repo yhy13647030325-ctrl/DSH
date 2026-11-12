@@ -1,0 +1,11 @@
+{
+  "book": "《SolidWorks 实战教程》上海三泽信息技术有限公司",
+  "page_range": [
+    10,
+    280
+  ],
+  "page_type": "书内页/PDF 页混用",
+  "read": [],
+  "note": "书内页/PDF 页混用，共 280 页。未做逐页实读核对，故 read 留空（只做越界与格式检查）。",
+  "pdf_total_pages": 280
+}
