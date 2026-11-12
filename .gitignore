@@ -63,6 +63,13 @@ Thumbs.db
 skills-backup/
 _shared/
 
+# ---- 技能商店的运行时状态（工具生成，不纳入版本控制）----
+# .skills_store_lock.json 记录从远端拉取的包（zip_url / version / source），
+# 每次安装/更新技能都会变，属于"环境状态"而非"内容"。
+.skills_store_lock.json
+.skills_store_lock.json.lock
+skills_store_lock.json
+
 # ============================================================
 # 说明：本仓库真正要版本化的是「知识」——SKILL.md / chapters/ /
 # references/ 里的 markdown 与少量校验脚本（.py）。
