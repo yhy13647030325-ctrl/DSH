@@ -184,11 +184,31 @@ def iter_md(skill_dir, include_meta=False):
             yield os.path.join(dp, f)
 
 
-def collect_citations(skill_dir, include_meta=False):
+# manifest 里可声明"包含其他书籍页码"的文件，这些文件不参与本书页码的越界检查
+# （2026-11-14 加：ch08 是跨书专题，混有 3 本 SOLIDWORKS 书的 PDF 页码）
+def load_exclude_files(skill_dir):
+    """从 manifest 读 mixed_sources.files，返回需排除的绝对路径集合。"""
+    cand = os.path.join(skill_dir, "references", "page-manifest.json")
+    if not os.path.exists(cand):
+        return set()
+    try:
+        mf = json.load(open(cand, encoding="utf-8"))
+    except Exception:
+        return set()
+    out = set()
+    for rel in (mf.get("mixed_sources", {}) or {}).get("files", []) or []:
+        out.add(os.path.normpath(os.path.join(skill_dir, rel)))
+    return out
+
+
+def collect_citations(skill_dir, include_meta=False, exclude_files=None):
     """返回 {页码: [(相对文件, 行号, 原始片段)]}，以及格式统计。"""
     cites = {}
     fmt = {"p3": 0, "p2": 0}
+    exclude_files = exclude_files or set()
     for path in iter_md(skill_dir, include_meta):
+        if os.path.normpath(path) in exclude_files:
+            continue
         rel = os.path.relpath(path, skill_dir)
         try:
             text = open(path, encoding="utf-8").read()
@@ -228,7 +248,8 @@ def collect_citations(skill_dir, include_meta=False):
 
 def check(skill_dir, manifest=None, include_meta=False):
     errs, warns, oks = [], [], []
-    cites, fmt = collect_citations(skill_dir, include_meta)
+    excludes = load_exclude_files(skill_dir)
+    cites, fmt = collect_citations(skill_dir, include_meta, excludes)
     if not cites:
         return errs, [f"该技能没有页码引用（可能不用 pXXX 标注）"], oks, fmt, cites
 
@@ -325,7 +346,7 @@ def main():
             p = os.path.join(root, d)
             if not os.path.isdir(p):
                 continue
-            c, _ = collect_citations(p, args.include_meta)
+            c, _ = collect_citations(p, args.include_meta, load_exclude_files(p))
             if c:
                 targets.append(d)
     elif args.skill:

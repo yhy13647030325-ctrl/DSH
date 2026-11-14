@@ -139,5 +139,16 @@
     "转图后必须抽读一页页脚确认偏移（PDF 索引 ≠ 印刷页码）",
     "两种页码格式 pNN 与 pNNN 不应混用",
     "引用某页前必须实际读过该页"
-  ]
+  ],
+  "mixed_sources": {
+    "note": "ch08 是跨书专题，内含战/2025/曲三本 SOLIDWORKS 书的 PDF 页码，不属于本书页码体系，应排除在越界检查外。",
+    "files": [
+      "chapters/ch08-assembly-datum-tolerance-crossbook.md"
+    ],
+    "other_books": {
+      "战": "《SolidWorks 实战教程》PDF 页（0-280）",
+      "2025": "《SOLIDWORKS 2025 从入门到精通》PDF 页（1-922）",
+      "曲": "《SOLIDWORKS 高级曲面教程 2017》PDF 页（1-209）"
+    }
+  }
 }
