@@ -5,7 +5,7 @@
   "offset_note": "实测 书内页 = PDF索引 − 9（抽读 PDF[12] 页脚=3、PDF[24] 页脚=15 校正）",
   "page_range": [
     1,
-    280
+    270
   ],
   "read": [
     1,
@@ -111,8 +111,10 @@
     101,
     102,
     103,
+    104,
     105,
     106,
+    107,
     108,
     109,
     110,
@@ -135,8 +137,10 @@
     127,
     128,
     129,
+    130,
     131,
     132,
+    133,
     134,
     135,
     136,
@@ -147,6 +151,7 @@
     141,
     142,
     143,
+    144,
     145,
     146,
     147,
@@ -154,12 +159,14 @@
     149,
     150,
     151,
+    152,
     153,
     154,
     155,
     156,
     157,
     158,
+    159,
     160,
     161,
     162,
@@ -180,12 +187,18 @@
     177,
     178,
     179,
+    180,
+    181,
     182,
+    183,
     184,
     185,
     186,
     187,
+    188,
+    189,
     190,
+    191,
     192,
     193,
     194,
@@ -238,11 +251,16 @@
     241,
     242,
     243,
+    244,
     245,
     246,
     247,
     248,
     249,
+    250,
+    251,
+    252,
+    253,
     254,
     255,
     256,
@@ -251,10 +269,13 @@
     259,
     260,
     261,
+    262,
     263,
     264,
     265,
+    266,
     267,
+    268,
     269,
     270
   ],
@@ -301,12 +322,9 @@
         125
       ],
       "pages": 31,
-      "referenced": 29,
-      "coverage_pct": 93.5,
-      "missing": [
-        104,
-        107
-      ]
+      "referenced": 31,
+      "coverage_pct": 100.0,
+      "missing": []
     },
     "ch05": {
       "file": "chapters/ch05-toolbox-standard-parts.md",
@@ -315,12 +333,9 @@
         136
       ],
       "pages": 11,
-      "referenced": 9,
-      "coverage_pct": 81.8,
-      "missing": [
-        130,
-        133
-      ]
+      "referenced": 11,
+      "coverage_pct": 100.0,
+      "missing": []
     },
     "ch06": {
       "file": "chapters/ch06-drawing.md",
@@ -329,12 +344,9 @@
         154
       ],
       "pages": 18,
-      "referenced": 16,
-      "coverage_pct": 88.9,
-      "missing": [
-        144,
-        152
-      ]
+      "referenced": 18,
+      "coverage_pct": 100.0,
+      "missing": []
     },
     "ch07": {
       "file": "chapters/ch07-render.md",
@@ -343,11 +355,9 @@
         163
       ],
       "pages": 9,
-      "referenced": 8,
-      "coverage_pct": 88.9,
-      "missing": [
-        159
-      ]
+      "referenced": 9,
+      "coverage_pct": 100.0,
+      "missing": []
     },
     "ch08": {
       "file": "chapters/ch08-configuration-parametric.md",
@@ -367,16 +377,9 @@
         196
       ],
       "pages": 19,
-      "referenced": 13,
-      "coverage_pct": 68.4,
-      "missing": [
-        180,
-        181,
-        183,
-        188,
-        189,
-        191
-      ]
+      "referenced": 19,
+      "coverage_pct": 100.0,
+      "missing": []
     },
     "ch10": {
       "file": "chapters/ch10-animation.md",
@@ -415,31 +418,12 @@
       "file": "chapters/ch99-certification-cswa-cswp.md",
       "page_range": [
         236,
-        280
+        270
       ],
-      "pages": 45,
-      "referenced": 27,
-      "coverage_pct": 60.0,
-      "missing": [
-        244,
-        250,
-        251,
-        252,
-        253,
-        262,
-        266,
-        268,
-        271,
-        272,
-        273,
-        274,
-        275,
-        276,
-        277,
-        278,
-        279,
-        280
-      ]
+      "pages": 35,
+      "referenced": 35,
+      "coverage_pct": 100.0,
+      "missing": []
     }
   }
 }
