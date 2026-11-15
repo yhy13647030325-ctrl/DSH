@@ -6,7 +6,8 @@ description: 精密注塑产品缺陷诊断知识库（蒸馏自李忠文《精�
 # 精密注塑产品缺陷诊断（100 例）
 
 > 来源：李忠文《精密注塑工艺与产品缺陷解决方案100例》。
-> 扫描件 OCR 蒸馏（228 页）。页码为 **PDF 页**，书内页 = PDF 页 − 26。
+> **纯扫描件（228 页全部无文本层）**，本版为**逐页视觉读图**（非 OCR 转写）。
+> **页码口径：书内印刷页**（实测 `PDF索引 = 书内页 + 5`，已用 PDF[7]→p2、PDF[29]→p24、PDF[34]→p29 三点校正）。
 > 边界：只复述书中已有内容。标 **（书中未展开）** 处不替它补；标 **（提炼）** 处为归纳。
 
 ## 这本书的结构
@@ -29,12 +30,22 @@ description: 精密注塑产品缺陷诊断知识库（蒸馏自李忠文《精�
 [附] 注塑成型工艺表 —— 射出压力/速度/位置、料筒温度、保压、冷却、干燥等
 ```
 
+## 章节文件（本版完整重做）
+
+| 文件 | 内容 | 覆盖 | 体量 |
+|---|---|---|---|
+| **[ch01-overview.md](chapters/ch01-overview.md)** | **第 1 部分全译**：塑料相变/五类参数/表 1-1/18 类缺陷/表 3-1/参数方向表 | **p2–p22（21/21）** | **39,473 字 / 52 条判据** |
+| **[ch02-cases-001-020.md](chapters/ch02-cases-001-020.md)** | **案例 1–20**（表面烘印/流痕/夹线/气纹/光影/融合线/IML 露白/拉模/冲墨/凹点/发雾/夹水线/困气烧白/拖伤/烧焦/行位断/螺丝柱断/熔接痕） | **p24–p63（40/40）** | **30,841 字 / 52 条判据** |
+| [ch00-overview.md](chapters/ch00-overview.md) | **旧版速查摘要**（保留作索引，内容已被 ch01 全面覆盖） | — | 3,596 字 |
+
 ## 怎么用这个技能
 
 | 你的情况 | 看哪 |
 |---|---|
 | 手上有个具体缺陷，要查怎么救 | [references/case-index.md](references/case-index.md) 按缺陷类型找案例号，再对照本章 |
-| 想先理解缺陷成因体系 | [chapters/ch00-overview.md](chapters/ch00-overview.md)（工艺参数与缺陷成因） |
+| 想先理解缺陷成因体系 | **[chapters/ch01-overview.md](chapters/ch01-overview.md)**（工艺参数与缺陷成因，39,000 字全译） |
+| **要查某案例的完整原文** | **[chapters/ch02-cases-001-020.md](chapters/ch02-cases-001-020.md)**（案例 1–20） |
+| 速查（旧版精简摘要） | [chapters/ch00-overview.md](chapters/ch00-overview.md) |
 | 要调机，需要四段注射的默认参数 | 本页"多级注射四段法"+ [references/cheatsheet.md](references/cheatsheet.md) |
 | 想知道是工艺问题还是结构问题 | [references/decision-tree.md](references/decision-tree.md) |
 | 想在设计阶段就避免 | [references/prevention.md](references/prevention.md)（与结构技能联动） |
