@@ -24,7 +24,7 @@
 
 | 技能 | 来源 | 体量 | 章数 | 回答什么 |
 |---|---|---|---|---|
-| `design-methodology-liuguanzong` | 柳冠中《设计方法论》 | **7.2 万**（含总索引+本总览） | — | **该不该做**、事理学、内外因、五品生命周期 |
+| `design-methodology-liuguanzong` | 柳冠中《设计方法论》 | **26.7 万**（含总索引+本总览） | — | **该不该做**、事理学、内外因、五品生命周期 |
 | `world-modern-design-history` | 王受之《世界现代设计史》 | **9.8 万** | 11 | 这类产品**历史上怎么来的** |
 | `design-psychology-norman` | 诺曼《设计心理学》 | 3.8 万 | 7 | 用户**怎么用、怎么用错** |
 | `ergonomics-ding-yulan` | 丁玉兰《人机工程学》 | 7.1 万 | 12 | 这个**尺寸**合适吗 |
@@ -44,8 +44,8 @@
 
 | 技能 | 来源 | 体量 | 章数 | 回答什么 |
 |---|---|---|---|---|
-| `product-structure-liubaoshun` | 刘宝顺《产品结构设计》 | 15.3 万 | 6 | 结构**怎么成立**、四大工艺、密封、安全 |
-| `product-injection-defects` | 李忠文《注塑缺陷 100 例》 | 3.4 万 | 1 + 索引 | 做出来**会不会有缺陷**（100 例） |
+| `product-structure-liubaoshun` | 刘宝顺《产品结构设计》 | 25.2 万 | 6 | 结构**怎么成立**、四大工艺、密封、安全 |
+| `product-injection-defects` | 李忠文《注塑缺陷 100 例》 | 23.6 万 | 1 + 索引 | 做出来**会不会有缺陷**（100 例） |
 
 > **注意**：`product-injection-defects` 的 `chapters/` 只有 1 个（ch00-overview），
 > 主体在 `references/case-index.md`（100 例索引）——**结构与其他技能不同，是刻意的**（案例型知识用索引更好查）。
@@ -55,8 +55,8 @@
 | 技能 | 来源 | 体量 | 章数 | 强项 |
 |---|---|---|---|---|
 | **`solidworks-practice`** | 《SolidWorks 实战教程》（三泽） | **21.1 万** | 13 | **逐步操作 + 182 条失败模式 + CSWA/CSWP** |
-| `solidworks-surface-advanced` | DS 官方《高级曲面教程 2017》 | 9.7 万 | 7 | 曲面原理（C0/C1/C2、复杂接合、破面修补、主模型） |
-| `solidworks-2025-mechanical` | 赵罘《2025 机械设计》 | 8.6 万 | 14 | **2025 版全模块** + 钣金/焊件/线路/公差 |
+| `solidworks-surface-advanced` | DS 官方《高级曲面教程 2017》 | 43.8 万 | 7 | 曲面原理（C0/C1/C2、复杂接合、破面修补、主模型） |
+| `solidworks-2025-mechanical` | 赵罘《2025 机械设计》 | 50.6 万 | 14 | **2025 版全模块** + 钣金/焊件/线路/公差 |
 
 > **这本是最大的单体技能**（21.1 万字，36 文件）。
 > 三者有统筹文档：`solidworks-practice/references/STANDARD.md`（含蒸馏前后对照表、口径定义、重叠矩阵）。
@@ -66,7 +66,7 @@
 | 技能 | 来源 | 体量 | 章数 | 定位 |
 |---|---|---|---|---|
 | `blender-hard-surface` | Belec《Blender 3D Incredible Models》 | 9.8 万 | 12 | **怎么做一个成品**（3 个项目：步枪/飞船/坦克） |
-| `blender-manual-reference` | Blender 2.92 官方手册 | 9.2 万 | 14 | **这个功能怎么用**（57 修改器 / 132 键 / 术语） |
+| `blender-manual-reference` | Blender 2.92 官方手册 | 19.1 万 | 14 | **这个功能怎么用**（57 修改器 / 132 键 / 术语） |
 
 > **两者也是互补关系**，统筹文档在 `blender-manual-reference/references/STANDARD.md`。
 > 含 `version-differences.md`（2.92 ↔ 5.1 实测）与 `BEFORE-AFTER.md`（蒸馏前后对照表）。

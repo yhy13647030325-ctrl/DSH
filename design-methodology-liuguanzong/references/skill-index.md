@@ -86,20 +86,20 @@
 
 | 技能 | 作者/来源 | 体量 | 最强的地方 | 不管的地方 |
 |---|---|---|---|---|
-| `design-methodology-liuguanzong` | 柳冠中《设计方法论》 | 12.5 万字（含本索引页） | 内外因分析、目标系统、五品全生命周期 | 不给具体造型与结构 |
+| `design-methodology-liuguanzong` | 柳冠中《设计方法论》 | 26.7 万字（含本索引页） | 内外因分析、目标系统、五品全生命周期 | 不给具体造型与结构 |
 | `world-modern-design-history` | 王受之《世界现代设计史》 | 9.8 万字 | 运动年表、风格脉络、避免重复 | 不讲当代工艺参数 |
 | `design-psychology-norman` | 诺曼《设计心理学》 | 3.8 万字 | 可视性、反馈、四类限制、失误与错误 | 不管造型美不美 |
 | `ergonomics-ding-yulan` | 丁玉兰《人机工程学》 | 7.1 万字 | 百分位选择、人体尺寸、显示与操纵装置 | 不管形态构成 |
 | `design-elements-hannah` | 汉娜《设计元素》 | 3.3 万字 | 主导/次要/附属、三比例、相贯楔入支撑 | 不管工艺能不能做 |
 | `product-design-styling-dabbs` | 戴布斯《产品设计造型》 | 5.6 万字 | 轮廓与配置图、形状抽象四步、线条关联 | 不管内部结构 |
 | `visual-dynamics-industrial-design` | 李想《视觉动力》 | 8.1 万字 | 视觉动力 F、施力者/受力者、凹与凸 | 不管功能合理性 |
-| `product-structure-liubaoshun` | 刘宝顺《产品结构设计》 | 15.3 万字 | 四大工艺、工艺性七问、密封、安全 | 不做强度计算 |
-| `product-injection-defects` | 李忠文《注塑缺陷 100 例》 | 3.4 万字 | 100 例对策、多级注射四段法 | 不给材料物性表 |
-| `solidworks-practice` | 《SolidWorks 实战教程》 | 21.1 万字 | 逐步操作、182 条失败模式 | 不管设计决策 |
-| `solidworks-surface-advanced` | DS 官方《高级曲面教程 2017》 | 9.7 万字 | C0/C1/C2、复杂接合、破面修补、主模型 | 不管实体建模基础 |
-| `solidworks-2025-mechanical` | 赵罘《SOLIDWORKS 2025 机械设计》 | 8.6 万字 | 2025 版全模块、**曲面命令参数**、钣金/焊件/线路/公差 | 曲面原理深度不及专书 |
+| `product-structure-liubaoshun` | 刘宝顺《产品结构设计》 | 25.2 万字 | 四大工艺、工艺性七问、密封、安全 | 不做强度计算 |
+| `product-injection-defects` | 李忠文《注塑缺陷 100 例》 | 23.6 万字 | 100 例对策、多级注射四段法 | 不给材料物性表 |
+| `solidworks-practice` | 《SolidWorks 实战教程》 | 46.8 万字 | 逐步操作、182 条失败模式 | 不管设计决策 |
+| `solidworks-surface-advanced` | DS 官方《高级曲面教程 2017》 | 43.8 万字 | C0/C1/C2、复杂接合、破面修补、主模型 | 不管实体建模基础 |
+| `solidworks-2025-mechanical` | 赵罘《SOLIDWORKS 2025 机械设计》 | 50.6 万字 | 2025 版全模块、**曲面命令参数**、钣金/焊件/线路/公差 | 曲面原理深度不及专书 |
 | `blender-hard-surface` | Belec《Blender 3D Incredible Models》 | 9.8 万字 | 四步工作流、3 个项目、111 条失败模式 | 不覆盖工程可制造性 |
-| `blender-manual-reference` | Blender 2.92 官方手册 | 9.2 万字 | 57 修改器、132 键、67 术语、28 约束 | 不给项目流程 |
+| `blender-manual-reference` | Blender 2.92 官方手册 | 19.1 万字 | 57 修改器、132 键、67 术语、28 约束 | 不给项目流程 |
 
 合计约 **111.7 万字**，全部按需加载，不会一次全读。
 
@@ -259,7 +259,8 @@
 
 ### 8.1 本目录下的配套文档
 
-> 这两份是**索引的补充**，不参与路由判断，但回溯/盘点时必看。
+> 以下文档是**索引的补充**，不参与路由判断，但回溯/盘点时必看。
+> **分三类**：① 技能库元信息（catalog/CHANGELOG）② 蒸馏质量与缺口（对照表/审计/缺口索引）③ 校验脚本。
 
 | 文档 | 作用 | 何时看 |
 |---|---|---|
@@ -268,10 +269,25 @@
 | [validate-skill-index.py](validate-skill-index.py) | **索引一致性校验**：数字一致性、编号唯一性 | **改完本页后**——见 8.3.1 |
 | [validate-page-citations.py](validate-page-citations.py) | **页码引用校验**：越界、格式混用、未实读引用 | **改完任何含 pXXX 的文档后**——见 8.3.2 |
 | [test-validate-skill-index.py](test-validate-skill-index.py) | **索引脚本的回归测试**：92 个断言，含 1..99999 全量往返 | **改动 validate-skill-index.py 后必跑**——见 8.3.3 |
+| **[COMPARISON-FINAL.md](COMPARISON-FINAL.md)** | **四本书蒸馏前后对照表（40 章 / 1,596 页 / 2,025 条判据）**：逐章体量、增幅、页码覆盖、判据密度；含原书自身错误 14 处 | **盘点进度时**——想知道"蒸馏做到什么程度了" |
+| [AUDIT-REPORT.md](AUDIT-REPORT.md) | **全量校验报告**：断链 / 编号连续 / 路径条数 / 默认值覆盖四项，含校验口径的 4 次修正记录 | **改完任何章节后**——复跑四项校验 |
+| [AUDIT-3BOOKS-CHAPTERS.md](AUDIT-3BOOKS-CHAPTERS.md) | **三本 SOLIDWORKS 逐章盘点**：体量、判据、步骤、页码覆盖，含 3 项缺口的修复记录 | **对比三本时**——判断该看哪本 |
+| [OVERLAP-GAP-ANALYSIS.md](OVERLAP-GAP-ANALYSIS.md) | **重叠与缺口分析**：88 个技术点的跨书匹配（35 三本共有 / 37 两本 / 16 独有）+ 263 条自报缺口 | **选书时**——"这个主题该查哪本" |
+| **[GAP-INDEX.md](GAP-INDEX.md)** | **307 条缺口总索引**：按"该去哪查"分 9 类（原书图/官方文档/标准手册/跨书/实测…），逐条可查 | **遇到"这里没讲透"**——查去哪补 |
+| **[SYSTEM-GAPS-12.md](SYSTEM-GAPS-12.md)** | **12 条四本都没有的体系缺口**：T/X/K/Y 接合、C3/G3、缝合公差、形位公差符号、Ra 系列、非静力分析、认证规则等 | **识别"教材盲区"时**——这些只能查标准/官方 |
+| [COMPARISON-PRACTICE.md](../../solidworks-practice/references/COMPARISON-PRACTICE.md) | **practice 单本详表**（十节）：逐章对照 + 口径说明（**该文件在 practice 技能下**） | **细看 practice 时** |
+| [BLENDER-AUDIT.md](BLENDER-AUDIT.md) | **两本 Blender 技能盘点**：体量/重叠/缺口，含 9 分区对应表 | **转做 Blender 前** |
 
-**两者的分工**：
-- `skill-catalog.md` 答**"现在是什么样"**
-- `CHANGELOG.md` 答**"为什么变成这样、怎么回到之前"**
+**三类的分工**：
+
+| 类别 | 文档 | 回答什么问题 |
+|---|---|---|
+| **① 技能库元信息** | `skill-catalog.md` / `CHANGELOG.md` | **"现在有什么技能" / "为什么变成这样、怎么退回去"** |
+| **② 蒸馏质量与缺口** | `COMPARISON-FINAL.md` / `AUDIT-REPORT.md` / `AUDIT-3BOOKS-CHAPTERS.md` / `OVERLAP-GAP-ANALYSIS.md` / `GAP-INDEX.md` / `SYSTEM-GAPS-12.md` / `COMPARISON-PRACTICE.md` / `BLENDER-AUDIT.md` | **"做到什么程度" / "哪里没讲透、去哪补"** |
+| **③ 校验脚本** | `validate-*.py` / `test-validate-*.py` | **"改完对不对"** |
+
+> **★★ 最常用的两份**：
+> **`COMPARISON-FINAL.md`（做到什么程度）** + **`GAP-INDEX.md`（缺什么、去哪补）**。
 
 ### 8.2 变更时的义务
 

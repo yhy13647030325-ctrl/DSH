@@ -16,6 +16,12 @@ description: 柳冠中《设计方法论》结构化技能知识库。当用户�
 > **变更日志（记录新增/停用/纠错/回退方式）**：[references/CHANGELOG.md](references/CHANGELOG.md)
 >
 > **不确定该用哪个设计技能？先看 [references/skill-index.md](references/skill-index.md)** —— 10 个设计技能的总索引（三层分工 + 按"卡在哪"的路由表 + 6 个跨技能接缝）。
+>
+> **蒸馏进度做到什么程度？**：[references/COMPARISON-FINAL.md](references/COMPARISON-FINAL.md) —— **四本书蒸馏前后对照表**（40 章 / 1,596 页 / 2,025 条判据 / 468 个步骤），含逐章体量与增幅、页码覆盖、判据密度，以及原书自身错误 14 处。
+>
+> **遇到"这里没讲透"去哪补？**：[references/GAP-INDEX.md](references/GAP-INDEX.md) —— **307 条缺口总索引**，按"该去哪查"分 9 类（原书图 / 官方文档 / 标准手册 / 跨书 / 实测 / 无处可查…），逐条可查。
+>
+> **哪些是四本教材都没有的？**：[references/SYSTEM-GAPS-12.md](references/SYSTEM-GAPS-12.md) —— **12 条体系缺口**（T/X/K/Y 接合、C3/G3、缝合公差、形位公差符号、Ra 系列、非静力分析、认证规则…），只能查标准或官方。
 
 | 用户查询主题 | 读取文件 |
 |-------------|---------|
