@@ -82,16 +82,10 @@
 
 | 类型 | 原文定义 | 关键特征 |
 |---|---|---|
-| **Modify** | 「**usually do not directly affect the geometry of the object,
-> but some other data, such as vertex groups**」 | **★ 不改几何，改"其他数据"（如顶点组）** |
-| **Generate** | 「**constructive/destructive tools that will affect the whole Topology of the mesh.
-> They can change the general appearance of the object, or add new geometry to it**」 | **★ 改变拓扑 / 增加几何** |
+| **Modify** | 「**usually do not directly affect the geometry of the object,but some other data, such as vertex groups**」 | **★ 不改几何，改"其他数据"（如顶点组）** |
+| **Generate** | 「**constructive/destructive tools that will affect the whole Topology of the mesh.They can change the general appearance of the object, or add new geometry to it**」 | **★ 改变拓扑 / 增加几何** |
 | **Deform** | 「**only change the shape of an object, without altering its topology**」 | **★ 只改形状，不改拓扑** |
-| **Simulate** | 「**represent physics simulations.** In most cases, they are automatically added
-> to the modifiers stack whenever a Particle System or Physics simulation is enabled.
-> **Their only role is to define the position in the modifier stack from which is taken
-> the base data for the simulation they represent.** As such, they typically have
-> no attributes」 | **★ 只是个"占位符"，标记模拟从哪里开始** |
+| **Simulate** | 「**represent physics simulations.** In most cases, they are automatically addedto the modifiers stack whenever a Particle System or Physics simulation is enabled.**Their only role is to define the position in the modifier stack from which is takenthe base data for the simulation they represent.** As such, they typically haveno attributes」 | **★ 只是个"占位符"，标记模拟从哪里开始** |
 
 **★★★★★ 分类的记忆判据（一张表）**：
 
@@ -1336,8 +1330,7 @@ Object Offset = 一个"空物体（Empty）"
 | 值 | 原文定义 | 判据 |
 |---|---|---|
 | **None** | **「No limit, all edges will be beveled」** | 全部倒 |
-| **★ Weight** | **「Use each edge's bevel weight to determine the width.
-> When the bevel weight is 0.0, no bevel is applied」** | **★ 权重=0 不倒，权重=宽度** |
+| **★ Weight** | **「Use each edge's bevel weight to determine the width.When the bevel weight is 0.0, no bevel is applied」** | **★ 权重=0 不倒，权重=宽度** |
 | **★ Vertex Group** | **「An edge is only beveled if both of its vertices are in the vertex group」** | **★ 必须"两端点都在组里"才倒** |
 
 > **★★★ Vertex Group 这条极重要**：
@@ -1412,9 +1405,7 @@ Object Offset = 一个"空物体（Empty）"
 | 模式 | 原文定义 | 效果 |
 |---|---|---|
 | **Sharp** | **「Edges meet at a sharp point, with no extra vertices introduced on the edges」** | **★ 尖点相接，不额外加点** |
-| **★ Patch** | **「Edges meet at a sharp point but in addition, two extra vertices are introduced
-> near the point so that the edges and faces at the vertex may be less pinched together
-> than what occurs in the Sharp case」** | **★ 尖点相接，但在附近加两个点 → 不那么"夹紧"** |
+| **★ Patch** | **「Edges meet at a sharp point but in addition, two extra vertices are introducednear the point so that the edges and faces at the vertex may be less pinched togetherthan what occurs in the Sharp case」** | **★ 尖点相接，但在附近加两个点 → 不那么"夹紧"** |
 | **Arc** | （原文后续） | **圆弧过渡** |
 
 > **★★★ 判据：**
@@ -1808,8 +1799,7 @@ Ratio = 0.5 的意思是"面数减半"
 
 | 参数 | 原文定义 |
 |---|---|
-| **★ Iterations** | **「The number of times to perform the un-subdivide operation.
-> Two iterations is the same as one subdivide operation, so you will usually want to use even numbers」** |
+| **★ Iterations** | **「The number of times to perform the un-subdivide operation.Two iterations is the same as one subdivide operation, so you will usually want to use even numbers」** |
 
 **★★★★★ 「两迭代 = 一次细分」（务必记住）**：
 
