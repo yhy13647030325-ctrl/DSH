@@ -105,6 +105,11 @@
 
 ## 三、路由表：按"我现在卡在哪"找技能
 
+> **★ 本节是"按感受"找技能；若你想"按主题词"找技能（如"倒角""密封""钣金"该查哪本），
+> 直接用 [ROUTE-TABLE-37.md](ROUTE-TABLE-37.md)** ——
+> **它是 37 个主题 × 13 个技能的实测覆盖矩阵（481 格），每格数字 = 该书命中次数。**
+> **★ 特别有用的是它的「三个陷阱」：`材料`/`环境因素` 的主力书都不是你以为的那本。**
+
 ### A 类：还没开始，方向不清
 
 | 你的感觉 | 去哪 | 第一句话问什么 |
@@ -278,16 +283,45 @@
 | [COMPARISON-PRACTICE.md](../../solidworks-practice/references/COMPARISON-PRACTICE.md) | **practice 单本详表**（十节）：逐章对照 + 口径说明（**该文件在 practice 技能下**） | **细看 practice 时** |
 | [BLENDER-AUDIT.md](BLENDER-AUDIT.md) | **两本 Blender 技能盘点**：体量/重叠/缺口，含 9 分区对应表 | **转做 Blender 前** |
 
+#### 8.1.1 13 技能全量盘点（2026-11-16 新增五份）
+
+> **背景**：8 步改造计划完成后，对全部 13 个技能做了**全量重算与盘点**。
+> **★ 这五份是"当前最新"的数据，`COMPARISON-FINAL.md` 等旧文档的数字已过期（保留作历史）。**
+
+| 文档 | 作用 | 何时看 |
+|---|---|---|
+| **[FINAL-SUMMARY.md](FINAL-SUMMARY.md)** | **13 技能最终成果总结（十节）**：最终数字 / 13 技能一览 / 16 项工作记录 / 三个缺口补足 / 四条方法论 / 质检 / 四份报告 / **仍标注为空白 6 项** / 怎么用 / 结论 | **想一次看全貌时**——这是总入口 |
+| **[COMPARISON-FINAL-2026.md](COMPARISON-FINAL-2026.md)** | **13 技能蒸馏前后对照表 v4（八节）**：总览 / 13 技能完整对照 / **密度排名（含按类型汇总）** / 步骤统计 / **19 项工作记录** / 20 条顶级判据 / **四条方法论** / 数据自洽 | **盘点进度时**——这是**最新版**对照表 |
+| **[INVENTORY-OVERLAP-GAP-13.md](INVENTORY-OVERLAP-GAP-13.md)** | **13 技能重叠与缺口盘点（七节）**：37 主题覆盖矩阵 / 78 组配对 Jaccard / 真空缺口 / 结论 / **缺口补足记录** | **想知道"该查哪本 / 缺点什么"** |
+| **[OVERLAP-SOLIDWORKS-3-NEW.md](OVERLAP-SOLIDWORKS-3-NEW.md)** | **三本 SOLIDWORKS 专项（十三节）**：26 主题矩阵 / 独占与缺口 / 配对重叠 / 逐章指纹 / 三本分工 / **工程图合并记录** / **P1+P2 补足记录** / 5 组复核 | **在 SW 三本之间选书时** |
+| **[OVERLAP-THEORY-5.md](OVERLAP-THEORY-5.md)** | **五本设计理论书盘点（九节）**：26 主题矩阵 / 独占与真空 / 配对重叠 / 五本分工 / 与 SW 关系 / 缺口 / 补缺优先级 | **在理论五本之间选书时** |
+| **[OVERLAP-THEORY-4-FALSE.md](OVERLAP-THEORY-4-FALSE.md)** | **四本理论书"误判重叠"复核（八节）**：六组配对 **全部 0 条相同行** / 33-39 章独有 / 四问路由 | **有人说"这几本重复了"时——拿这个反驳** |
+| **[ROUTE-TABLE-37.md](ROUTE-TABLE-37.md)** | **37 主题 × 13 技能可查路由表（七节）**：四档覆盖表 / **决策树（六大类 30 问）** / 五个必配组合 / **三个陷阱** / **完整 481 格矩阵** | **"这个问题该查哪本"——按主题查** |
+
+**新增五份 vs 旧文档的关系**：
+
+| 旧文档 | 状态 | 替代者 |
+|---|---|---|
+| `COMPARISON-FINAL.md`（四本 40 章） | **数字已过期**，保留作历史 | **`COMPARISON-FINAL-2026.md`** |
+| `COMPARISON-13-SKILLS.md` | 同上 | 同上 |
+| `OVERLAP-SOLIDWORKS-THREE.md` | 同上（基于改造前数据） | **`OVERLAP-SOLIDWORKS-3-NEW.md`** |
+| `OVERLAP-THEORY-THREE.md` | 同上 | **`OVERLAP-THEORY-5.md`** + **`OVERLAP-THEORY-4-FALSE.md`** |
+| `OVERLAP-BLENDER-TWO.md` | 仍有效（Blender 未改造） | — |
+
 **三类的分工**：
 
 | 类别 | 文档 | 回答什么问题 |
 |---|---|---|
 | **① 技能库元信息** | `skill-catalog.md` / `CHANGELOG.md` | **"现在有什么技能" / "为什么变成这样、怎么退回去"** |
-| **② 蒸馏质量与缺口** | `COMPARISON-FINAL.md` / `AUDIT-REPORT.md` / `AUDIT-3BOOKS-CHAPTERS.md` / `OVERLAP-GAP-ANALYSIS.md` / `GAP-INDEX.md` / `SYSTEM-GAPS-12.md` / `COMPARISON-PRACTICE.md` / `BLENDER-AUDIT.md` | **"做到什么程度" / "哪里没讲透、去哪补"** |
+| **② 蒸馏质量与缺口** | **`FINAL-SUMMARY.md`** / **`COMPARISON-FINAL-2026.md`** / **`INVENTORY-OVERLAP-GAP-13.md`** / **`OVERLAP-SOLIDWORKS-3-NEW.md`** / **`OVERLAP-THEORY-5.md`** / **`OVERLAP-THEORY-4-FALSE.md`** / **`ROUTE-TABLE-37.md`** / `AUDIT-REPORT.md` / `AUDIT-3BOOKS-CHAPTERS.md` / `GAP-INDEX.md` / `SYSTEM-GAPS-12.md` / `BLENDER-AUDIT.md` / `COMPARISON-PRACTICE.md` | **"做到什么程度" / "哪里没讲透、去哪补" / "该查哪本"** |
 | **③ 校验脚本** | `validate-*.py` / `test-validate-*.py` | **"改完对不对"** |
 
-> **★★ 最常用的两份**：
-> **`COMPARISON-FINAL.md`（做到什么程度）** + **`GAP-INDEX.md`（缺什么、去哪补）**。
+> **★★★ 最常用的三份（按查什么）**：
+> | 想知道 | 看哪份 |
+> |---|---|
+> | **全貌 / 做到什么程度** | **`FINAL-SUMMARY.md`** + **`COMPARISON-FINAL-2026.md`** |
+> | **缺什么、去哪补** | **`GAP-INDEX.md`** + `INVENTORY-OVERLAP-GAP-13.md` §4 |
+> | **这个问题该查哪本** | **`ROUTE-TABLE-37.md`**（37 主题 → 13 技能） |
 
 ### 8.2 变更时的义务
 
@@ -296,6 +330,10 @@
 | 新增 / 停用技能 | ① 本页路由表 ② `skill-catalog.md` ③ **`CHANGELOG.md` 追加一条** |
 | 修改技能的事实性内容（键位、参数、版本） | **`CHANGELOG.md` 记"改了什么 + 为什么错 + 如何复验"** |
 | 决定"这个问题不修" | **`CHANGELOG.md` 记为"已知并接受的遗留项"**，否则后人会重做一遍 |
+| **改了任何章节的字符数或判据数** | **① `COMPARISON-FINAL-2026.md` §二 ② `recount3.py` 重跑 ③ 本页 §二 速览的体量** |
+| **新增/合并章节内容** | **① `FINAL-SUMMARY.md` §三 工作记录 ② `INVENTORY-OVERLAP-GAP-13.md` §7 ③ `CHANGELOG.md`** |
+| **新增技能或改主题覆盖** | **① `ROUTE-TABLE-37.md` 全表重算 ② `INVENTORY-OVERLAP-GAP-13.md` §2 矩阵** |
+| **声称"两本重复"之前** | **必做 `完全相同的行` 校验**——见 `OVERLAP-THEORY-4-FALSE.md` §三（Jaccard 0.92 但 0 条相同行） |
 
 ### 8.3 自动校验脚本
 
@@ -455,12 +493,12 @@ python test-validate-skill-index.py --quick   # 跳过全量往返（不推荐�
 > 铁律 1 说"格式共存会破坏统计"，**这不只是页码脚本的事**。
 > `validate-skill-index.py` 原本也只认中文数字，同一个毛病。
 
-| | |
-|---|---|
-| **隐患** | 原正则只匹配 `[一二三四五六七八九十]+`，"## 二、**14** 个技能速览"抓不到 |
-| **后果** | 数字一致性检查**静默失效**——不报错，直接当作"没声明"跳过 |
-| **修复** | 统一用 `NUM_PAT = (?:[一二三四五六七八九十]+|\d{1,2})`，两写法全吃 |
-| **`--fix-numbers`** | 另加"**保持原写法**"：中文改完仍中文，阿拉伯改完仍阿拉伯 |
+| 项 | 内容 | 备注 |
+|---|---|---|
+| **隐患** | 原正则只匹配 `[一二三四五六七八九十]+`，"## 二、**14** 个技能速览"抓不到 | — |
+| **后果** | 数字一致性检查**静默失效**——不报错，直接当作"没声明"跳过 | — |
+| **修复** | 统一用 `NUM_PAT = (?:[一二三四五六七八九十]+\|\d{1,2})`，两写法全吃 | — |
+| **`--fix-numbers`** | 另加"**保持原写法**"：中文改完仍中文，阿拉伯改完仍阿拉伯 | — |
 
 > **★ 最危险的不是报错，是静默跳过。**
 > 只认一种写法的解析代码不会崩，它只会**悄悄算出错误结果**，
