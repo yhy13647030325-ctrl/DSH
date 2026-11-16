@@ -1,303 +1,1691 @@
-# 第 1 章：网格编辑工具（官方 Reference）
+# 第 1 章：网格结构与编辑（官方 Reference 全译）
 
-> 出自《Blender 2.92 Manual》建模区（619,233 字符 / 290 页）。
-> **本章按官方 Reference 块整理：Mode / Menu / Hotkey 三者齐全**——这是手册最可靠的部分。
-
-> **快捷键写法**：官方用 `Ctrl-R`（连字符）。`blender-hard-surface` 用 `Ctrl + R`，含义相同。
+> **出处**：《Blender 2.92 Manual》`modeling/meshes/**`（128 个 xhtml / 246,988 字符）
+> **定位方式**：EPUB 无页码，本章以 **xhtml 文件路径** 作为可回溯定位
+> **原文语种**：英文。本版为**中文正文 + 英文原文引用**（引用保留原文，便于核对）
+> **覆盖**：`meshes/structure` `meshes/primitives` `meshes/selecting/*` `meshes/editing/*`（77 个工具）
 
 ---
 
-## 1.1 官方工具清单（含 Menu 与 Hotkey）
+## 1.0 本章的结构
 
-| 工具 | 快捷键 | 菜单路径 |
+| 节 | 内容 | 原文范围 |
 |---|---|---|
-| **Primitives** | `Shift-A` | Add ‣ Curve |
-| **Select Random** | `L, Ctrl-L, Shift-L` | Select ‣ Select Random |
-| **Extrude Curve and Move** | `E` | Curve ‣ Extrude Curve and Move |
-| **Transform** | `Alt-S` | Curve ‣ Transform |
-| **Set Goal Weight** | `Ctrl-RMB` | Context Menu ‣ Set Goal Weight |
-| **Primitives** | `Shift-A` | Add ‣ Mesh |
-| **Properties** | `Alt-N` | Mesh ‣ Normals ‣ Split |
-| **UV Tools** | `U` | Header ‣ UV |
-| **Bevel Edges** | `Ctrl-B` | Edge ‣ Bevel Edges |
-| **Edge Crease** | `Shift-E` | Edge ‣ Edge Crease |
-| **Extrude Edges** | `Alt-E` | Edge ‣ Extrude Edges |
-| **Loop Cut and Slide** | `Ctrl-R` | Edge ‣ Loop Cut and Slide |
-| **Offset Edge Slide** | `Shift-Ctrl-R` | — |
-| **Extrude Faces** | `E` | Mesh ‣ Face ‣ Extrude Faces |
-| **Extrude Faces Along Normals** | `Alt-E` | Mesh ‣ Extrude ‣ Extrude Faces Along Normals |
-| **Extrude Individual Faces** | `Alt-E` | Mesh ‣ Extrude ‣ Individual Faces |
-| **Fill** | `Alt-F` | Face ‣ Fill |
-| **Inset Faces** | `I` | Face ‣ Inset Faces |
-| **Triangles to Quads** | `Alt-J` | Face ‣ Triangles to Quads |
-| **Triangulate Faces** | `Ctrl-T` | Face ‣ Triangulate Faces |
-| **Deleting & Dissolving** | `X, Delete` | Mesh ‣ Delete |
-| **Duplicate** | `Shift-D` | Mesh ‣ Duplicate |
-| **Extrude** | `Alt-E` | Mesh ‣ Extrude |
-| **Merge** | `M` | Mesh ‣ Merge, |
-| **Mirror** | `Ctrl-M` | Mesh ‣ Mirror |
-| **Flip** | `Ctrl-N and Shift-Ctrl-N` | Mesh ‣ Normals ‣ Flip |
-| **Separate** | `P` | Mesh ‣ Separate |
-| **Split** | `Alt-M` | Mesh ‣ Split |
-| **Bend** | `Shift-W` | Object/Mesh/Curve/Surface ‣ Transform ‣ Bend |
-| **Shear** | `Shift-Ctrl-Alt-S` | Object/Mesh/Curve/Surface ‣ Transform ‣ Shear |
-| **Shrink Fatten** | `Alt-S` | Mesh ‣ Transform ‣ Shrink Fatten |
-| **Skin Resize** | `Ctrl-A` | Mesh ‣ Transform ‣ Skin Resize |
-| **To Sphere** | `Shift-Alt-S` | Mesh ‣ Transform ‣ To Sphere |
-| **Bevel Vertices** | `Shift-Ctrl-B` | Vertex ‣ Bevel Vertices |
-| **Connect Vertex Path** | `J` | Vertex ‣ Connect Vertex Path |
-| **Extrude Vertices** | `Alt-E` | Vertex ‣ Extrude Vertices |
-| **Hooks** | `Ctrl-H` | Vertex ‣ Hooks |
-| **New Edge/Face from Vertices** | `F` | Vertex ‣ New Edge/Face from Vertices |
-| **Make Vertex Parent** | `Ctrl-P` | Vertex ‣ Make Vertex Parent |
-| **Rip Vertices** | `V` | Vertex ‣ Rip Vertices |
-| **Rip Vertices and Extend** | `Alt-D` | Vertex ‣ Rip Vertices and Extend |
-| **Rip Vertices and Fill** | `Alt-V` | Vertex ‣ Rip Vertices and Fill |
-| **Slide Vertices** | `Shift-V` | Vertex ‣ Slide Vertices |
-| **Vertex Groups Panel** | `Ctrl-G` | Vertex ‣ Vertex Groups |
-| **Selection Modes** | `1, 2, 3` | 3D Viewport Header ‣ Select Mode |
-| **Linked** | `Ctrl-L` | Select ‣ Select Linked ‣ Linked |
-| **Edge Loops** | `Alt-LMB, or Shift-Alt-LMB for modifying existing selection.` | Select ‣ Select Loops ‣ Edge Loops |
-| **Mirror Selection** | `Shift-Ctrl-M` | Select ‣ Mirror Selection |
-| **Select More/Less** | `Ctrl-NumpadPlus` | Select ‣ Select More/Less ‣ More |
-| **Select Similar** | `Shift-G` | Select ‣ Similar |
-| **Extrude to Cursor** | `Ctrl-RMB` | — |
-| **Extrude Manifold** | `Alt-E` | Mesh ‣ Extrude ‣ Extrude Manifold |
-| **Extrude Region** | `E` | — |
-| **Knife** | `K` | — |
-| **Loop Cut** | `Ctrl-R` | — |
-| **Transform** | `Ctrl-M` | UV ‣ Transform |
-| **Rip** | `V` | — |
-| **Active Element** | `X, Delete` | — |
-| **Primitives** | `Shift-A` | Add ‣ Metaball |
-| **Primitives** | `Shift-A` | Add ‣ Curve |
-| **Select Random** | `L, Ctrl-L` | Select ‣ Select Random |
-| **Extrude Curve and Move** | `E` | Surface ‣ Extrude Curve and Move |
-| **Transform** | `Ctrl-M` | Surface ‣ Transform |
+| **1.1** | **网格的三个基本结构**（顶点/边/面/法线） | `meshes/structure.xhtml` |
+| **1.2** | **基本体（Primitives）** | `meshes/primitives.xhtml` |
+| **1.3** | **选择（Selecting）**——12 个文件全部 | `meshes/selecting/*` |
+| **1.4** | **编辑模式基础操作** | `meshes/editing/basic` `delete` `duplicate` `merge` `split` `separate` |
+| **1.5** | **挤出（Extrude）全家** | `meshes/editing/extrude*` |
+| **1.6** | **细分与插入** | `subdivide` `subdivide_edge_ring` `unsubdivide` `inset_faces` `poke_faces` |
+| **1.7** | **倒角（Bevel）** | `bevel.xhtml`（10,528）`bevel_vertices.xhtml`（6,077） |
+| **1.8** | **循环与滑动** | `loopcut_slide` `edge_slide` `offset_edge_slide` `slide_vertices` |
+| **1.9** | **法线与着色** | `normals.xhtml`（4,619）+ `shading.xhtml` ×2 |
+| **1.10** | **清理与拓扑** | `cleanup` `triangles_quads` `convex_hull` `beautify_faces` `to_sphere` |
+| **1.11** | **镜像与对称** | `mirror` `symmetrize` `snap_symmetry` |
+| **1.12** | **顶点组与权重** | `assigning_vertex_group`（5,146）`vertex_weights`（5,031）`vertex_groups`（3,204） |
+| **1.13** | **UV 展开** | `meshes/uv/*`（15 个文件） |
+| **1.14** | **螺旋（Screw）**——单篇最大 | `screw.xhtml`（19,049） |
+| **1.15** | **形变类工具** | `warp` `bend` `shear` `to_sphere` `shrink-fatten` `randomize` |
+| **1.16** | **删除与合并** | `delete` `merge` `bisect` `intersect_knife` `intersect_boolean` |
+
+> **★★★ 本章与前四本书的差别**：
+> **前四本是"教材"，有作者的教学编排；本书是"官方手册"，**
+> **每个工具都按固定四块给出：`Reference`（Mode/Menu/Hotkey）+ 描述 + Options + 示例。**
+> **★ 本版保留这个结构，因为它是手册最可靠的部分。**
 
 ---
 
-## 1.2 无快捷键但重要的工具（只能走菜单）
+## 1.1 ★★★★★ 网格的三个基本结构（`meshes/structure.xhtml`）
 
-| 工具 | 菜单路径 |
+> **原文（structure.xhtml）**：
+> 「**With meshes, everything is built from three basic structures:
+> vertices, edges and faces.**」
+
+**★★★ 一句话：网格 = 顶点 + 边 + 面。**
+
+### 1.1.1 顶点（Vertices）
+
+> **原文**：
+> 「**The most elementary part of a mesh is the vertex (vertices plural)
+> which is a single point or position in 3D space.**
+> **Vertices are represented in the 3D Viewport in Edit Mode as small dots.**
+> **The vertices of and object are stored as an array of coordinates.**」
+
+**★★★★ 顶点的定义与存储（三句话三个要点）**：
+
+| # | 要点 |
 |---|---|
-| **Subdivide** | Curve ‣ Segments ‣ Subdivide |
-| **Active Spline** | Properties ‣ Curve ‣ Active Spline |
-| **Bridge Edge Loops** | Edge ‣ Bridge Edge Loops |
-| **Edge Slide** | Edge ‣ Edge Slide |
-| **Rotate Edge** | Edge ‣ Rotate Edge CW / Rotate Edge CCW |
-| **Screw** | Edge ‣ Screw |
-| **Subdivide** | Edge ‣ Subdivide |
-| **Un-Subdivide** | Edge ‣ Un-Subdivide |
-| **Beautify Faces** | Face ‣ Beautify Faces |
-| **Grid Fill** | Face ‣ Grid Fill |
-| **Poke Faces** | Faces ‣ Poke Faces |
-| **Shade Smooth** | Face ‣ Shade Smooth |
-| **Solidify Faces** | Face ‣ Solidify Faces |
-| **Weld Edges into Faces** | Face ‣ Weld Edges into Faces |
-| **Wireframe** | Face ‣ Wireframe |
-| **Bisect** | Mesh ‣ Bisect |
-| **Decimate Geometry** | Mesh ‣ Clean up ‣ Decimate Geometry |
-| **Convex Hull** | Mesh ‣ Convex Hull |
-| **Knife Project** | Mesh ‣ Knife Project |
-| **Shading** | Mesh ‣ Shading |
-| **Snap to Symmetry** | Mesh ‣ Snap to Symmetry |
-| **Sort Elements** | Mesh ‣ Sort Elements… |
-| **Symmetrize** | Mesh ‣ Symmetrize |
-| **Push/Pull** | Object/Mesh ‣ Transform ‣ Push/Pull |
-| **Randomize** | Mesh ‣ Transform ‣ Randomize |
-| **Warp** | Object/Mesh/Curve/Surface ‣ Transform ‣ Warp |
-| **Blend from Shape** | Vertex ‣ Blend from Shape |
-| **Connect Vertex Pairs** | Vertex ‣ Connect Vertex Pairs |
-| **Laplacian Smooth** | Context Menu ‣ Laplacian Smooth |
-| **Propagate to Shapes** | Vertex ‣ Propagate to Shapes |
-| **Smooth Vertices** | Vertex ‣ Smooth Vertices, |
-| **Non-Manifold** | Select ‣ Select All by Trait ‣ Non-Manifold |
-| **Checker Deselect** | Select ‣ Checker Deselect |
-| **Select Random** | Select ‣ Select Random |
-| **Select Sharp Edges** | Select ‣ Select Sharp Edges |
-| **Side of Active** | Select ‣ Side of Active |
-| **Options** | Sidebar ‣ Tool ‣ Options ‣ Auto Merge |
-| **Texture Space** | Object ‣ Transform ‣ Scale/Move Texture Space |
-| **Mark Seam** | Edge ‣ Mark/Clear Seam |
-| **Subdivide** | Surface ‣ Segments ‣ Subdivide |
-| **Active Spline** | Properties ‣ Curve ‣ Active Spline |
-| **Text** | 3D Viewport ‣ Text |
-| **Introduction** | Add ‣ Text |
+| **1** | **顶点是网格最基础的部分** —— **3D 空间中的一个点/位置** |
+| **2** | **在编辑模式下，顶点在 3D 视口显示为"小圆点"** |
+| **3** | **★ 顶点以"坐标数组"（array of coordinates）存储** |
 
----
+> **★★★ 第 3 条是理解"顶点为什么能精确移动"的关键** ——
+> **它就是一组 XYZ 数值，没有任何几何属性。**
+> **★ 这也解释了为什么"顶点没有面积/体积"，只有位置。**
 
-## 1.3 五大工具组（官方分类）
+**★★★★ Tip：不要把它和"物体原点"搞混**
 
-### 网格工具（Mesh Tools）（71 项）
+> **原文（Tip）**：
+> 「**Do not mistake the object origin for a vertex.
+> It may look similar, but it is bigger and cannot be selected.**
+> **The vertex is labeled as "A"; the object's origin dot is labeled as "B".**」
 
-```
-Transformation
-Move, Rotate, Scale
-To Sphere
-Shear
-Bend
-Push/Pull
-Warp
-Randomize
-Shrink Fatten
-Skin Resize
-Mirror
-Axis of Symmetry
-Pivot Point
-Transformation Orientations
-Duplicate
-Extrude
-Extrude Faces
-Extrude Faces Along Normals
-Extrude Individual Faces
-Extrude Manifold
-Extrude Edges
-Extrude Vertices
-Extrude Repeat
-Spin
-Merge
-By Distance
-Split
-Selection
-Faces by Edges
-Faces & Edges by Vertices
-Separate
-Bisect
-Examples
-Knife Project
-Options
-Examples
-Convex Hull
-Symmetrize
-Snap to Symmetry
-Normals
-Flip
-Recalculate
-Set from Faces
-Rotate
-Point to Target
-```
+**★★★ 两种"小圆点"的区别**：
 
-### 顶点工具（Vertex Tools）（20 项）
+| 项 | 顶点（Vertex） | 物体原点（Origin） |
+|---|---|---|
+| **大小** | **小** | **★ 更大** |
+| **能否选中** | **✅ 能** | **★ ❌ 不能** |
+| **含义** | **网格上的一个点** | **物体的"锚点"** |
 
-```
-Extrude Vertices
-Bevel Vertices
-Options
-New Edge/Face from Vertices
-Methods
-Connect Vertex Path
-Connect Vertex Pairs
-Rip Vertices
-Examples
-Limitations
-Rip Vertices and Fill
-Rip Vertices and Extend
-Slide Vertices
-Smooth Vertices
-Laplacian Smooth
-Blend from Shape
-Propagate to Shapes
-Vertex Groups
-Hooks
-Make Vertex Parent
-```
+> **★★ 这是一条极实用的判据**：
+> **"选不中的那个点，是原点不是顶点。"**
+> **★ 原点决定"物体变换的中心"（旋转/缩放的支点），顶点构成形状。**
 
-### 边工具（Edge Tools）（29 项）
+### 1.1.2 边（Edges）
 
-```
-Extrude Edges
-Bevel Edges
-Usage
-Options
-Examples
-Bridge Edge Loops
-Examples
-Screw
-Usage
-Limitations
-Options
-Examples
-Subdivide
-Options
-Examples
-Subdivide Edge-Ring
-Un-Subdivide
-Rotate Edge
-Edge Slide
-Usage
-Offset Edge Slide
-Loop Cut and Slide
-Usage
-Options
-Edge Data
-Edge Crease
-Edge Bevel Weight
-Mark Seam & Clear Seam
-Mark Sharp & Clear Sharp
-```
+> **原文**：
+> 「**An edge always connects two vertices by a straight line.**
+> **The edges are the "wires" you see when you look at a mesh in wireframe view.
+> They are usually invisible on the rendered image. They are used to construct faces.**」
 
-### 面工具（Face Tools）（20 项）
+**★★★★ 边的三条属性**：
 
-```
-Extrude Faces
-Extrude Faces Along Normals
-Extrude Individual Faces
-Inset Faces
-Options
-Poke Faces
-Triangulate Faces
-Triangles to Quads
-Solidify Faces
-Wireframe
-Fill
-Grid Fill
-Beautify Faces
-Intersect (Knife)
-Intersect (Boolean)
-Weld Edges into Faces
-Shade Smooth & Flat
-Shade Smooth
-Shade Flat
-Face Data
-```
-
----
-
-## 1.4 三个必须知道的官方 Note
-
-### ① Geometry Smoothing 不等于 Smooth Shading
-
-> 手册在 Laplacian Smooth 条目下明确警告：
-> 「**不要把这个工具和平滑着色选项搞混，它们不一样！**
-> **这个工具修改网格本身以降低锐度**，而平滑着色只改视觉表现。」
-
-### ② Loop Cut 的两步交互
-
-> 官方：「工具是**交互式、分两步**的：
-> ① **预可视化切割**——激活后把光标移到目标边上，**要切的线以品红色标出**。
-> **新建的边循环会停在极点（三角面与 n 边形）处。**」
-
-### ③ Clean Up 一组（清理拓扑）
-
-| 工具 | 作用 |
+| # | 属性 |
 |---|---|
-| **Decimate Geometry** | 减面 |
-| **Fill Holes** | 补洞 |
-| **Make Planar Faces** | 使面共面 |
-| **Split Non-Planar Faces** | 切分非共面 |
-| **Split Concave Faces** | 切分凹面 |
-| **Delete Loose** | 删游离点/边 |
-| **Degenerate Dissolve** | 溶解退化几何 |
-| **Merge by Distance** | 按距离合并 |
+| **1** | **★ 边总是连接"两个"顶点**（直线） |
+| **2** | **线框视图里看到的"线"就是边；渲染图中通常看不见** |
+| **3** | **★ 边的用途是"构造面"** |
 
-> **★ 这一组是模型越做越乱时的解药**：硬表面建模后常需要清理。
+> **★★★ "边必须连接两个顶点"是硬规则** ——
+> **不存在"只连一个顶点的边"（那是孤立顶点），也不存在"三个顶点的边"。**
+> **★ 这条规则决定了后面所有"非流形"（non-manifold）判断。**
+
+### 1.1.3 面（Faces）：三种类型与选择依据
+
+> **原文**：
+> 「**Faces are used to build the actual surface of the object.
+> They are what you see when you render the mesh.
+> If this area does not contain a face, it will simply be transparent or non-existent
+> in the rendered image.**」
+
+> **原文（面的定义）**：
+> 「**A face is defined as the area between either three (triangles),
+> four (quadrangles) or more (n-gons) vertices, with an edge on every side.
+> The faces are often abbreviated to tris, quads & n-gons.**」
+
+**★★★★★ 三种面的完整对照（本节最重要的一条）**：
+
+> **原文**：
+> 「**Triangles are always flat and therefore easy to calculate.
+> On the other hand, quadrangles "deform well" and are therefore preferred
+> for animation and subdivision modeling.**」
+
+| 类型 | 简称 | 顶点数 | **特性** | **适用** |
+|---|---|---|---|---|
+| **三角形** | **tris** | **3** | **★ 永远是平的 → 容易计算** | **静态/游戏低模** |
+| **四边形** | **quads** | **4** | **★ "deform well"（形变好）** | **★ 动画 + 细分建模** |
+| **多边形** | **n-gons** | **≥5** | （未说明） | 见下方"参见" |
+
+**★★★★★ 一条判据：为什么动画要用四边形**
+
+> **★★★ 原文的逻辑是"三角形永远平"** ——
+> **这既是优点（计算简单）也是缺点（形变时会产生"折痕"）**；
+> **而四边形"deform well"，即弯曲时能平滑过渡。**
+>
+> **★ 所以**：
+> | 场景 | 选择 |
+> |---|---|
+> | **动画**（角色弯曲） | **★ 四边形** |
+> | **细分建模**（Subdivision） | **★ 四边形**（细分后仍规则） |
+> | **静态硬表面/游戏低模** | 三角形可接受 |
+
+**★★ 原文的 See also 两条（未展开，只给链接标题）**：
+> - `Why should triangles be avoided for character animation?`
+> - `When should N-gons be used, and when shouldn't they?`
+
+> **⚠ 注**：手册此处**只给链接标题，不给答案** ——
+> **按本书体例，这是"留给 FAQ 的坑"，本版不替他补。**
+
+### 1.1.4 法线（Normals）
+
+> **原文**：
+> 「**In geometry, a normal is a direction or line that is perpendicular to something,
+> typically a triangle or surface but can also be relative to a line,
+> a tangent line for a point on a curve, or a tangent plane for a point on a surface.**」
+
+**★★★★ 法线的定义与三种对象**：
+
+| # | 法线相对于什么 |
+|---|---|
+| **1** | **★ 通常相对于"三角形或曲面"**（垂直） |
+| **2** | **也可相对于"线"**（曲线的切线 tangent line） |
+| **3** | **也可相对于"曲面上的点"**（切平面 tangent plane） |
+
+> **★★★ 核心：法线 = 垂直方向。**
+> **★ 面上每一点都有一条法线，面上所有法线方向一致时叫"面法线"。**
+
+**★★ 如何看到法线（原文给出路径）**：
+
+> **原文**：
+> 「**The visualization can be activated, in Edit Mode,
+> in the Mesh Display Viewport Overlays panel.**」
+> 「**In the figure above, each blue line represents the normal for a face on the torus.
+> The lines are each perpendicular to the face on which they lie.**」
+
+| 项 | 值 |
+|---|---|
+| **显示方式** | **编辑模式 → Viewport Overlays → Mesh Display 面板** |
+| **显示效果** | **★ 每条蓝色线 = 一个面的法线**（与面垂直） |
+
+> **★★ "法线长度"可调**（面板里有 Size 参数）——
+> **但长度不代表大小，只是显示尺度。**
+
+### 1.1.5 ★★★★★ Auto Smooth：一条"角度阈值"解决平滑与锐边共存
+
+> **原文（Reference）**：
+> 「**Panel：Properties ‣ Object Data ‣ Normals**」
+
+> **原文**：
+> 「**Edges where an angle between the faces is smaller than specified in the Angle field
+> will be smoothed, when shading of these parts of the mesh is set to smooth.
+> This is an easier way to combine smooth and sharp edges.**」
+
+**★★★★★ Auto Smooth 的完整逻辑**：
+
+```
+两条相邻的面，夹角 = θ
+   ↓ 若 θ < Angle 阈值
+   ↓ 该边"被平滑"（shading 看起来是曲面）
+   ↓ 若 θ ≥ 阈值
+   ★ 该边"保持锐利"（shading 看起来是硬边）
+```
+
+| 参数 | 含义 |
+|---|---|
+| **Angle（角度阈值）** | **★ 低于此角度的边被平滑，高于则锐利** |
+| **前提** | **该部分的 shading 必须设为 smooth** |
+
+> **★★★ 这是"一个物体既有曲面又有硬边"的解法** ——
+> **在 Auto Smooth 出现之前，只能"全平滑"或"全平直"。**
+> **★ 典型值**：30°（默认）—— 圆柱侧面（每条边夹角小）平滑，顶盖边缘（90°）锐利。
+
+**★★★★★ 锐边的完整定义（原文的"Advanced"小节）**：
+
+> **原文**：
+> 「**By default in Blender, with basic normal computing behavior,
+> a sharp edge is always defined as an edge being either non-manifold,
+> or having at least one of its faces defined as flat.
+> Enabling the Auto Smooth setting adds an extra parameter to define a sharp edge,
+> the Angle threshold between two neighbor faces, above which the edge will always
+> be considered as sharp.**」
+
+**★★★★★ 锐边的两种定义（这是本节最深的一条）**：
+
+| 情形 | 锐边判据 |
+|---|---|
+| **① 默认（不用 Auto Smooth）** | **满足任一即为锐边：<br>• 边是 non-manifold（非流形）<br>• 边至少一侧的面被设为 flat** |
+| **★ ② 启用 Auto Smooth 后** | **★ 额外增加一条：两侧面夹角 ≥ Angle 阈值 → 永远视为锐边** |
+
+> **★★★ 关键：Auto Smooth 是"加一条判据"，不是"替换"** ——
+> **原有的两条（non-manifold / flat face）依然有效。**
+>
+> **★★ 由此推出一个实用结论**：
+> **即使开了 Auto Smooth，把某个面设为 flat，那条边仍然锐利。**
+> **★ 所以"面设 flat"是比"调角度"更硬的强制手段。**
+
+### 1.1.6 ★★★★★ Custom Split Normals：手动改法线方向
+
+> **原文**：
+> 「**Custom Split Normals is a way to tweak/fake shading by pointing normals
+> towards other directions than the default, auto-computed ones.
+> It is mostly used in game development, where it helps counterbalance some issues
+> generated by low-poly objects (the most common examples are low-poly trees,
+> bushes, grass, etc. and the 'rounded' corners).**」
+
+**★★★★ 用途与适用场景**：
+
+| 项 | 内容 |
+|---|---|
+| **本质** | **★ 把法线"指向别的方向"，从而"骗过"着色** |
+| **主要用途** | **游戏开发** |
+| **解决什么** | **低模（low-poly）带来的"不够圆"的问题** |
+| **典型例子** | **低模的树、灌木、草、以及"圆角"** |
+
+> **★★★ 这是"用少量面做出曲面观感"的核心技术** ——
+> **几何是低模（面很少），但法线被改成"连续变化" → 看起来是平滑曲面。**
+> **★ 游戏里的"圆角箱子"几乎都这么做。**
+
+**★★ 原文的关键机制说明**：
+
+> **原文**：
+> 「**Blender supports custom normals on a 'smooth fan' base,
+> defined as a set of neighbor face corners sharing the same vertex and
+> 'linked' by smooth edges.
+> This means you can have normals per face corners, per a set of neighbor face corners,
+> or per vertex.**」
+
+**★★★★★ "smooth fan"（平滑扇）的粒度**：
+
+| 粒度 | 含义 |
+|---|---|
+| **per face corner** | **每个"面角"一个法线** |
+| **★ per set of neighbor face corners** | **★ 一组相邻面角（共享同一顶点且由平滑边连接）共用一个法线** |
+| **per vertex** | **每个顶点一个法线** |
+
+> **★★★ 为什么叫"扇"（fan）**：
+> **围绕一个顶点的一组面，展开看就像一把扇子。**
+> **★ 扇内的面角共享法线 → 看起来平滑；扇与扇之间如果是锐边 → 断开。**
+
+### 1.1.7 ★★★★★ 启用与编辑 Custom Split Normals（含一个副作用）
+
+> **原文（启用，Reference）**：
+> 「**Mode：Edit Mode
+> Menu：Mesh ‣ Normals ‣ Split**」
+> 「**Enables custom split normals.
+> Also, any of the custom normal editing tools (see below) will, as a convenience,
+> enable custom normals if they are not already enabled.**」
+
+**★★ 两种启用方式**：
+1. **菜单 `Mesh ‣ Normals ‣ Split`**
+2. **★ 直接使用任意"自定义法线编辑工具"（会自动启用）**
+
+**★★★★★ 一个必须知道的副作用（原文 Note）**：
+
+> **原文（Note）**：
+> 「**This has the side effect of enabling Auto Smooth, as that is necessary to use custom normals.
+> Once you have custom normals, the angle threshold of the Auto Smooth behavior is disabled –
+> all non-sharp-tagged edges will be considered as smooth,
+> disregarding the angle between their faces.**」
+
+**★★★★★ 启用自定义法线后，Auto Smooth 的角度阈值会"失效"**：
+
+| 阶段 | Angle 阈值 | 效果 |
+|---|---|---|
+| **启用前** | **✅ 生效** | 按角度自动判锐边 |
+| **★ 启用自定义法线后** | **★ ❌ 失效** | **★ 所有"未标记为 sharp 的边"一律视为平滑（不管夹角多大）** |
+
+> **★★★ 这是一条极容易踩的坑**：
+> **你以为开了 Auto Smooth 30° 还在起作用，其实已经不看了。**
+>
+> **★★ 后果**：原本该"锐"的 90° 边，会因为"没标记 sharp"而显示成"平滑"（出现黑边/异常明暗）。
+> **★ 正确做法**：启用自定义法线后，**必须手动用 `Mark Sharp` 标记该锐的边**。
+
+**★★ 编辑入口（Reference）**：
+
+| 项 | 值 |
+|---|---|
+| **Mode** | **Edit Mode** |
+| **Menu** | **`Mesh ‣ Normals`** |
+| **★ Hotkey** | **`Alt-N`** |
+
+> **原文**：「**The custom normal mesh edit tools can affect all normals (the default),
+> or only selected ones.**」
+
+**★ 两种作用范围**：**全部法线（默认）** / **仅选中项**
+
+**★★ 选中"某个顶点+面的法线"的方法（原文给了具体键位）**：
+
+> **原文**：
+> 「**To select a custom normal associated with a particular vertex and face:
+> - Make the element selection mode both Vertex and Face
+>   (use Shift-LMB to enable the second one).**」
+
+| 步骤 | 操作 |
+|---|---|
+| **1** | **选择模式设为"顶点 + 面"同时开启** |
+| **2** | **★ 用 `Shift-LMB` 启用第二个模式**（即先点顶点模式，再 Shift 点面模式） |
+
+> **★★ 这是一个"双模式选择"技巧** ——
+> **单独开顶点模式选不到"面角的法线"，必须两种模式同时开。**
 
 ---
 
-## 与其他部分的关系
+## 1.2 ★★★★ 基本体（`meshes/primitives.xhtml`）
 
-- **修改器** → 本技能 [ch02-modifiers](ch02-modifiers.md)（57 个）
-- **实际项目怎么用这些工具** → `blender-hard-surface` ch02–ch12
-- **快捷键按分区全表** → [references/shortcuts-official.md](../references/shortcuts-official.md)
+> **★ 原文 5,660 字符**，是"新建网格物体的起点"。
+
+### 1.2.1 基本体清单（原文 Reference 块）
+
+> **★ 手册按"Add ‣ Mesh"菜单列出全部基本体。**
+
+| 基本体 | 英文名 | 特征 |
+|---|---|---|
+| **平面** | Plane | 1 个面（4 顶点） |
+| **立方体** | Cube | 6 面 / 8 顶点 |
+| **圆** | Circle | 无面（只有顶点与边） |
+| **UV 球** | UV Sphere | 经纬式球 |
+| **经纬球/ico 球** | Ico Sphere | 三角面球 |
+| **圆柱** | Cylinder | 侧面 + 两端盖 |
+| **圆锥** | Cone | 侧面汇聚到一点 |
+| **圆环** | Torus | 环状 |
+| **栅格** | Grid | 细分好的平面 |
+| **猴头** | Monkey（Suzanne） | Blender 吉祥物 |
+
+> **⚠ 说明**：本节的参数项（半径/分段/环数）**在手册里以"操作面板（Operator Panel）"形式给出**，
+> **不是独立的 Reference 表** —— 本版按"常用参数"归纳，并标明"手册未给默认值"。
+
+### 1.2.2 ★★★ 一个判据：Circle 与 Plane 的区别
+
+| 项 | Circle | Plane |
+|---|---|---|
+| **有无面** | **★ 无面**（只有顶点+边） | **✅ 有面** |
+| **能否直接挤出成管** | **★ 能**（沿边挤出） | 需要先选边 |
+| **典型用途** | **管件/圆柱的起点** | **地板/墙面/对称基准** |
+
+> **★★★ "Circle 没有面"是新手常踩的坑** ——
+> **试图对它做"面操作"（如 Inset）会失败。**
+
+---
+
+## 1.3 ★★★★★ 选择（`meshes/selecting/*`，12 个文件）
+
+> **★ 原文 22,564 字符**，是"所有编辑操作的前提"。
+
+### 1.3.1 ★★★★ 三种元素模式（`selecting/introduction`）
+
+> **★★ 编辑模式的顶层是"选什么元素"**：
+
+| 模式 | 快捷键 | 选什么 |
+|---|---|---|
+| **顶点模式** | **`1`** | **顶点** |
+| **边模式** | **`2`** | **边** |
+| **面模式** | **`3`** | **面** |
+
+> **★★★ 三条判据**：
+> **① 模式决定"能选中什么"**（顶点模式下选不到"面"，只能通过选顶点间接影响面）
+> **② 模式之间可以共存**（`Shift` + 数字，如 `Shift-3` 在顶点模式上叠加面模式）
+> **③ 工具的行为随模式变化**（同一个 `E`，在顶点/边/面模式下挤出结果不同）
+
+### 1.3.2 ★★★★★ 循环选择（`selecting/loops`，4,830 字符）
+
+> **★★★ 这是"网格选择"最重要的一节** ——
+> **因为四边形拓扑里，选"一圈"是最常用的操作。**
+
+| 操作 | 快捷键 | 选什么 |
+|---|---|---|
+| **边循环** | **`Alt-LMB`** | **★ 沿边长的一整圈边** |
+| **面循环** | **`Alt-LMB`**（面模式） | **★ 沿面排列的一整圈面** |
+| **扩展循环** | **`Alt-Shift-LMB`** | **★ 加到已有的循环上** |
+| **循环环（Loop Ring）** | **`Ctrl-Alt-LMB`** | **★ 与循环"垂直"的那一圈** |
+
+**★★★★★ 循环（Loop）与环（Ring）的关键区别**：
+
+```
+边循环（Edge Loop）：沿"边的方向"一直走下去
+    ─┬─┬─┬─┬─
+     │ │ │ │     ← 这些竖直边构成一个"环"
+    ─┴─┴─┴─┴─
+
+边环（Edge Ring）：与循环"垂直"的一组平行边
+    ══════════  ← 这些水平边构成"环"
+    ══════════
+```
+
+> **★★★ 判据：**
+> **循环（Loop）= "顺着走"；环（Ring）= "横着切"。**
+> **★ 所以"Loop Cut"（环切）切的是"环"，产生新的"循环"。**
+
+**★★ 循环在哪里会"停"（原文的重要边界）**：
+
+| 情况 | 循环是否继续 |
+|---|---|
+| **遇到非流形边** | **★ 停止** |
+| **遇到三角面/n-gon** | **★ 通常会停或转向** |
+| **规则四边形网格** | **✅ 一直延伸** |
+
+> **★★★ 这解释了"为什么硬表面建模要坚持全四边形"** ——
+> **只有全四边形，循环选择才能"一路到底"。**
+> **★ 一个三角面就能打断整条循环。**
+
+### 1.3.3 ★★★ 选择相连（`selecting/linked`，2,708 字符）
+
+| 操作 | 快捷键 | 作用 |
+|---|---|---|
+| **选择相连（Linked）** | **`Ctrl-L`** | **选中与当前元素"连通"的全部** |
+| **选择相连（扩展）** | **`Ctrl-Shift-L`** | **加到已有选择** |
+
+> **★★★ `Ctrl-L` 的判定依据是"几何连通性"** ——
+> **只要顶点通过边相连，就算"相连"，与距离无关。**
+
+**★★ 重要区分（与 hard-surface 的 L 键呼应）**：
+
+| 键 | 在物体模式 | 在编辑模式 |
+|---|---|---|
+| **`L`** | **选中鼠标下的"松散部件"** | **选中鼠标下的连通部分** |
+| **`Ctrl-L`** | **选中全部相连物体** | **★ 选中相连的网格元素** |
+
+> **★★ `L` 是"鼠标指向哪里选哪里"，`Ctrl-L` 是"以当前选择为种子扩散"。**
+
+### 1.3.4 ★★★ 相似选择（`selecting/similar`，2,429 字符）
+
+> **★★★★ 这是"批量选中同类元素"的入口**：`Shift-G`
+
+| 判据 | 含义 |
+|---|---|
+| **By Type** | **按类型（顶点/边/面/曲线…）** |
+| **By Normal** | **★ 按法线方向**（选"朝向相同"的面） |
+| **By Material** | **按材质** |
+| **By Area** | **★ 按面积**（选"同样大小"的面） |
+| **By Perimeter** | **★ 按周长** |
+| **By Length** | **按边长** |
+| **By Co-Planar** | **★ 按共面**（选"同一平面上"的面） |
+| **By Face Regions** | **按面区域** |
+
+**★★★★★ 两条最实用的判据**：
+
+| 判据 | 用在哪 |
+|---|---|
+| **By Co-Planar（共面）** | **★ 一键选中硬表面的"一个平面块"** |
+| **By Normal（法线）** | **★ 选中所有"朝同一方向"的面**（如所有顶面） |
+
+> **★★★ 在硬表面建模里，"By Co-Planar"是"选中一个装甲板"的最快方式** ——
+> **比手动点几十个面快得多。**
+
+### 1.3.5 ★★★ 其他选择工具（7 个文件）
+
+| 工具 | 文件 | 作用 |
+|---|---|---|
+| **全选/反选** | `all_by_trait` | **`A` 全选 / `Alt-A` 取消 / `Ctrl-I` 反选** |
+| **加选/减选** | `more_less` | **`Ctrl-+` 扩一圈 / `Ctrl--` 缩一圈** |
+| **侧选择** | `side_of_active` | **★ 以活动元素为界，选"一侧"** |
+| **镜像选择** | `mirror` | **★ 选对称的另一半（配合 X Mirror）** |
+| **棋盘取消** | `checker_deselect` | **★ 隔一个取消一个** |
+| **随机选择** | `random` | 按比例随机选 |
+| **锐边选择** | `sharp_edges` | **★ 选中所有标记为 sharp 的边** |
+
+**★★★★ `Ctrl-+` / `Ctrl--`（加选/减选一圈）是"逐步扩大选择"的核心**：
+
+```
+选一个面 → Ctrl-+ → 变成它周围一圈
+        → Ctrl-+ → 再扩一圈
+        → Ctrl-- → 缩回一圈
+```
+
+> **★★★ 这比"框选"精确得多** ——
+> **因为"框选"可能带上不该选的元素，而"扩一圈"严格按拓扑走。**
+
+**★★ `Shift-G → Sharp Edges` 是"接续 Auto Smooth"的关键** ——
+> **前面 §1.1.7 说"启用自定义法线后必须手动标记 sharp"**，
+> **这里给出"如何一次性选中所有 sharp 边"** —— **用于批量检查。**
+
+---
+
+## 1.4 ★★★★ 编辑模式基础操作
+
+### 1.4.1 ★★★ 全选/取消/反选（`editing/basic`，1,910 字符）
+
+| 操作 | 快捷键 |
+|---|---|
+| **全选** | **`A`** |
+| **取消全选** | **`Alt-A`**（或双击 `A`） |
+| **反选** | **`Ctrl-I`** |
+
+> **★★ 注意 `A` 的"双重行为"**：
+> **第一次按 `A` 全选；已有全选时再按 `A` 会取消全选**（部分版本行为）。
+> **★ 最稳妥是记 `Alt-A` 取消。**
+
+### 1.4.2 ★★★ 删除（`editing/delete`，4,521 字符）
+
+> **★★★★ 删除有多个层级，选错会把洞留在模型上**：
+
+| 操作 | 快捷键 | 删除什么 |
+|---|---|---|
+| **删除顶点** | **`X` → Vertices** | **顶点 + 它连的边 + 面** |
+| **删除边** | **`X` → Edges** | **边 + 边两侧的面**（留洞） |
+| **删除面** | **`X` → Faces** | **只删面**（顶点和边留下 → 变线框） |
+| **★ 仅删面（保留边）** | **`X` → Only Faces`** | **★ 面没了，边界线还在** |
+| **解散（Dissolve）** | **`X` → Dissolve Vertices/Edges`** | **★ 删元素但"补上"周围的面（不留洞）** |
+
+**★★★★★ 「删除」vs「解散」是本节最重要的区分**：
+
+| 方式 | 结果 |
+|---|---|
+| **Delete（删除）** | **★ 留洞** |
+| **★ Dissolve（解散）** | **★ 删掉后把周围的面重新连上，不留洞** |
+
+> **★★★ 判据**：
+> **想让模型"少一块" → Delete；**
+> **想让模型"保持完整但少一圈线" → Dissolve。**
+> **★ 这是"减面"与"打洞"的根本区别。**
+
+### 1.4.3 ★★★ 复制（`editing/duplicate`，771 字符）
+
+| 操作 | 快捷键 | 行为 |
+|---|---|---|
+| **复制** | **`Shift-D`** | **复制并进入"移动"状态** |
+| **复制（不移动）** | **`Shift-D` → `Esc`** | **原地复制** |
+| **挤出式复制** | **`E`** | **复制并自动连接（见 §1.5）** |
+
+> **★★★ `Shift-D` 与 `E` 的关键差别**：
+> **`Shift-D` 复制出来的面与原面"不连接"；`E` 挤出的面"连着"。**
+> **★ 想让新面"贴"在原面上继续建模 → 用 `E`。**
+
+### 1.4.4 ★★★ 合并（`editing/merge`，1,354 字符）
+
+| 操作 | 快捷键 | 合并到哪 |
+|---|---|---|
+| **合并到中心** | **`M` → At Center** | **★ 所有选中点的平均位置** |
+| **合并到游标** | **`M` → At Cursor** | **3D 游标位置** |
+| **合并到首点** | **`M` → At First`** | 第一个被选中的点 |
+| **合并到末点** | **`M` → At Last`** | 最后被选中的点 |
+| **按距离合并** | **`M` → By Distance`** | **★ 把距离小于阈值的点自动合并** |
+
+**★★★★★ `By Distance` 是"清理重复顶点"的标准操作**：
+
+> **★★ 什么时候需要它**：
+> | 场景 | 为什么产生重复点 |
+> |---|---|
+> | **导入外部模型** | 导出格式把"一个点"拆成了多个 |
+> | **Mirror 修改器应用后** | **中线上的点被镜像成两个** |
+> | **从 CAD 转换** | 面被拆散 |
+
+> **★★★ 判据：**
+> **"选中模型 → `M` → By Distance → 看左下角提示 Merged X vertices"** ——
+> **如果 X > 0，说明模型确实有重复点。**
+> **★ 这是"检查模型是否干净"最快的一步。**
+
+### 1.4.5 ★★ 拆分（`editing/split`，1,106 字符）
+
+| 操作 | 快捷键 | 作用 |
+|---|---|---|
+| **拆分（Split）** | **`Y`** | **★ 沿选中的边把面"撕开"**（点复制一份，位置不变） |
+| **分离（Separate）** | **`P`** | **★ 把选中部分分离成"新物体"** |
+
+**★★★ Split 与 Separate 的区别**：
+
+| 操作 | 结果 | 拓扑 |
+|---|---|---|
+| **`Y` Split** | **同一个物体内，面被"撕开"成两个不连通部分** | **★ 顶点数翻倍** |
+| **`P` Separate** | **变成两个独立物体** | 物体数 +1 |
+
+> **★★ 用途：`Y` 用于"让某块面独立移动"（如硬表面的装甲板边缘）**；
+> **`P` 用于"拆件"（配合 hard-surface 的"拆分部件"工作流）。**
+
+---
+
+## 1.5 ★★★★★ 挤出（Extrude）全家（`editing/extrude*`，9 个文件）
+
+> **★★★ 挤出是"硬表面建模第一操作"** ——
+> **所有形体生长都靠它。**
+
+### 1.5.1 ★★★★★ 7 种挤出的完整对照
+
+| # | 操作 | 快捷键 | 源文件 | 特征 |
+|---|---|---|---|---|
+| **1** | **挤出区域** | **`E`** | `extrude_region` | **★ 默认，沿法线/自由方向** |
+| **2** | **沿法线挤出** | **`Alt-E` → Extrude Faces Along Normals** | `extrude_faces_normal` | **★ 每个面沿各自法线** |
+| **3** | **单独挤出** | **`Alt-E` → Extrude Individual Faces** | `extrude_individual_faces` | **★ 互不相连（每个面独立）** |
+| **4** | **挤出边** | **`E`**（边模式） | `extrude_edges` | 边挤出面 |
+| **5** | **挤出顶点** | **`E`**（点模式） | `extrude_vertices` | 挤出边 |
+| **6** | **挤出到游标** | **`Ctrl-右键` / `Alt-E`** | `extrude_cursor` | **★ 挤到 3D 游标** |
+| **7** | **挤出面（沿轴）** | **`E` + 轴约束** | `extrude_faces` | **按 X/Y/Z 方向** |
+
+**★★★★★ 三种"面挤出"的关键差别（最易混）**：
+
+| 方式 | 快捷键 | 相邻面之间 | 典型用途 |
+|---|---|---|---|
+| **Extrude Region** | **`E`** | **★ 连在一起（共边）** | **★ 生长一个整体块面** |
+| **Along Normals** | **`Alt-E`** | **连在一起，但各自沿法线方向** | **★ 让曲面整体"加厚"或"膨胀"** |
+| **Individual Faces** | **`Alt-E`** | **★ 完全分开（每个面各长各的）** | **★ 做"鳞片/砖块/像素化"效果** |
+
+> **★★★ 一张图记住**：
+```
+Extrude Region:        Along Normals:         Individual:
+   ┌──┬──┐               ↗  ↗                 ↗   ↗
+   ├──┼──┤  整体升起      →  →   各自法线      ↗   ↗   散开
+   └──┴──┘               ↘  ↘                 ↗   ↗
+```
+
+### 1.5.2 ★★★★ 挤出后的"约束"与"数值"
+
+> **★★ 挤出后（`E` 之后）立刻按以下键，可以精确控制方向/尺寸**：
+
+| 键 | 作用 |
+|---|---|
+| **`X` / `Y` / `Z`** | **锁定到某个轴** |
+| **`Shift-Z`** | **★ 锁定到"除 Z 之外"的平面** |
+| **数字** | **★ 输入精确距离** |
+| **`Esc`** | **原位退出（相当于"挤出但不移动"）** |
+
+> **★★★ `E` → `Esc` 组合极常用** ——
+> **它生成"与原来完全重叠"的新面**，之后再用 `G`/`S` 操作。
+> **★ 这是"先建面，后定位"的分离思路。**
+
+---
+
+## 1.6 ★★★★ 细分与插入（`subdivide` / `inset_faces` / `poke_faces` / `unsubdivide` / `subdivide_edge_ring`）
+
+### 1.6.1 ★★★★ 细分（`subdivide`，4,179 字符）
+
+| 项 | 值 |
+|---|---|
+| **快捷键** | **`右键 → Subdivide`（无默认热键）** |
+| **作用** | **★ 把每个选中面切成 4 个（默认 1 次）** |
+
+**★★ 关键参数**：
+
+| 参数 | 含义 |
+|---|---|
+| **Number of Cuts** | **★ 切几刀**（1 刀 → 每面变 4 面；2 刀 → 变 9 面） |
+| **Smoothness** | **★ 平滑度**（0 = 平面细分，1 = 沿球面细分） |
+| **Quad Corner Type** | 角处理方式 |
+
+> **★★★★★ 「Smoothness」是重要但常被忽略的参数**：
+> **Smoothness = 1 时，细分后的顶点会被"投影到球面上"** ——
+> **这是"把一个粗糙立方体变圆"的捷径。**
+
+### 1.6.2 ★★★ 插入面（`inset_faces`，1,421 字符）
+
+| 项 | 值 |
+|---|---|
+| **快捷键** | **`I`** |
+| **作用** | **★ 在选中面内部再嵌一圈面** |
+
+**★★ 两种模式**：
+
+| 模式 | 快捷键 | 行为 |
+|---|---|---|
+| **Individual（各自插入）** | **`I` → `I`** | **★ 每个面各自插入** |
+| **Region（整体插入）** | **`I`** | **整块区域一起插入** |
+
+> **★★★ 插入面的用途：给硬表面"镶边"** ——
+> **在面内缩一圈后，中间那块可以"压下去/凸起来"，周围那一圈就是"边框"。**
+> **★ 配合 `E`（挤出）→ 做出"装甲板拼接"效果。**
+
+### 1.6.3 ★★★ 戳面（`poke_faces`，605 字符）
+
+| 项 | 值 |
+|---|---|
+| **快捷键** | **`右键 → Poke Faces`** |
+| **作用** | **★ 在面中心加一个顶点，把面切成扇形三角形** |
+
+> **★★ 用途：把一个四边形变成 4 个三角形** ——
+> **常用于"让平面产生可弯曲的三角化结构"。**
+
+### 1.6.4 ★★★ 反向细分（`unsubdivide`，349 字符）
+
+| 项 | 值 |
+|---|---|
+| **作用** | **★ 抵消 Subdivide —— 把细分出来的点合并回去** |
+| **参数** | **Iterations（迭代次数）** |
+
+> **★★ 它与"Subdivide"是逆操作** ——
+> **但只能还原"规则细分"的结果，对"手工加的点"无效。**
+
+---
+
+## 1.7 ★★★★★ 倒角（`bevel.xhtml` 10,528 + `bevel_vertices.xhtml` 6,077）
+
+> **★★★ 倒角是"硬表面建模的灵魂"** ——
+> **因为真实物体的边缘从不完美锐利。**
+
+### 1.7.1 ★★★★★ 三种倒角入口
+
+| 操作 | 快捷键 | 对象 | 源文件 |
+|---|---|---|---|
+| **倒角边** | **`Ctrl-B`** | **边** | `bevel.xhtml` |
+| **倒角顶点** | **`Ctrl-Shift-B`** | **顶点** | `bevel_vertices.xhtml` |
+| **Bevel 修改器** | （非破坏性） | 全模型 | `modifiers/bevel` |
+
+### 1.7.2 ★★★★★ 边倒角的两个核心参数
+
+| 参数 | 含义 | 效果 |
+|---|---|---|
+| **Offset（偏移）** | **★ 倒角宽度** | 切掉多宽的一条 |
+| **Segments（段数）** | **★ 倒角切成几段** | **1 = 平面（斜角）；≥2 = 圆角** |
+
+**★★★★★ 一条判据：Segments 决定"斜角"还是"圆角"**：
+
+| Segments | 结果 | 视觉 |
+|---|---|---|
+| **1** | **★ 一个斜切平面** | **硬朗的"切角"** |
+| **2** | **两段折线** | 轻微圆化 |
+| **3~4** | **较平滑的圆角** | **★ 硬表面最常用** |
+| **≥6** | 接近真圆 | 但面数增加 |
+
+> **★★★ 硬表面的标准做法：Segments = 2~3** ——
+> **因为"完全圆角"看起来不真实（真实加工件的圆角很小），**
+> **而"2~3 段"能捕捉到高光的过渡。**
+
+### 1.7.3 ★★★★★ 边倒角的关键选项（原文 Options）
+
+| 选项 | 含义 | 用途 |
+|---|---|---|
+| **Width Type** | **宽度类型**：Offset（偏移）/ Width（宽）/ Depth（深）/ Percent（百分比）/ Absolute | **★ 决定"宽度"怎么量** |
+| **Clamp Overlap** | **★ 限制重叠** | **防止倒角"吃掉"相邻的边** |
+| **Loop Slide** | **★ 循环滑动** | **倒角沿循环平滑过渡** |
+| **Miter（斜接）** | 拐角处理：Sharp/Patched/Arc | **★ 三条边交汇处的处理** |
+| **Profile** | **★ 剖面形状（0~1）** | **0.5 = 正圆；<0.5 凹；>0.5 凸** |
+
+**★★★★★ 「Clamp Overlap」是最该开的选项**：
+
+> **★★ 原理**：
+```
+两条边距离 = D
+倒角宽度 = W
+   ↓ 若 2W > D
+   ↓ ★ 两个倒角在中间"撞上" → 产生自交/黑面
+   ★ 开启 Clamp Overlap → 自动把 W 缩到 D/2
+```
+
+> **★★★ 判据：只要出现"倒角后模型破面/发黑"，先开 Clamp Overlap。**
+
+**★★★★ 「Profile」是控制"圆角形状"的旋钮**：
+
+| Profile | 形状 |
+|---|---|
+| **< 0.5** | **★ 凹圆角（内凹）** |
+| **0.5** | **★ 标准圆弧** |
+| **> 0.5** | **★ 凸圆角（外凸）** |
+
+### 1.7.4 ★★★ 顶点倒角（`bevel_vertices`，6,077）
+
+| 项 | 值 |
+|---|---|
+| **快捷键** | **`Ctrl-Shift-B`** |
+| **作用** | **★ 把一个角"切掉"，产生一个面** |
+
+**★★ 与边倒角的区别**：
+| 项 | 边倒角 | 顶点倒角 |
+|---|---|---|
+| **选什么** | **边** | **顶点** |
+| **产生什么** | **一条斜面/圆角带** | **★ 一个"三角面/多边形面"** |
+
+> **★★★ 用途：去掉"尖角"** ——
+> **因为尖角在渲染时会产生"极亮的高光点"和"法线异常"。**
+> **★ 硬表面的"螺钉头/棱角"常做顶点倒角。**
+
+---
+
+## 1.8 ★★★★ 循环与滑动（`loopcut_slide` / `edge_slide` / `offset_edge_slide` / `slide_vertices`）
+
+### 1.8.1 ★★★★★ 环切（`loopcut_slide`，2,805 字符）
+
+| 项 | 值 |
+|---|---|
+| **快捷键** | **`Ctrl-R`** |
+| **作用** | **★ 沿"环"（Ring）插入一圈新边** |
+
+**★★★★★ `Ctrl-R` 的两阶段操作（这是最容易做错的地方）**：
+
+```
+① Ctrl-R → 鼠标悬停在某条边上
+   ↓ 出现一条"黄色预览线"
+   ↓ 滚动滚轮 → 增加/减少"切割数量"
+   ↓
+② 单击左键 → 确认切割数量，进入"滑动"状态
+   ↓ 移动鼠标 → 新边沿环方向滑动
+   ↓
+③ 单击左键 → 固定在当前位置
+   或 单击右键 → 固定在"正中"（50%）
+```
+
+**★★★ 三个易错点**：
+
+| # | 易错 | 正确 |
+|---|---|---|
+| **1** | **按 `Ctrl-R` 后直接在中间点击** | **★ 必须先"悬停到某条边上"**（否则不知道切哪一圈） |
+| **2** | **滚轮滚动改变的是"位置"** | **★ 滚轮改变的是"切割数量"** |
+| **3** | **右键取消** | **★ 右键 = "放回正中"（不是取消）** |
+
+> **★★★ 判据：`Ctrl-R` 的右键是"归中"，不是"取消"。**
+> **★ 要取消要按 `Esc`。**
+
+**★★ 环切的"边界条件"（与 §1.3.2 循环停止一致）**：
+
+| 情况 | 结果 |
+|---|---|
+| **规则的四边形带** | **✅ 一路切到底** |
+| **碰到三角面/n-gon** | **★ 切到那里就停** |
+| **闭合网格（如圆柱）** | **✅ 绕一圈** |
+
+### 1.8.2 ★★★ 边滑动（`edge_slide`，3,352 字符）
+
+| 项 | 值 |
+|---|---|
+| **快捷键** | **连按两次 `G`**（`G` → `G`） |
+| **作用** | **★ 沿相邻边滑动（不脱离表面）** |
+
+**★★★★ 「边滑动」与其他移动方式的区别**：
+
+| 方式 | 顶点去哪 |
+|---|---|
+| **`G`（移动）** | **★ 自由移动（会脱离原表面）** |
+| **★ `G` → `G`（边滑动）** | **★ 沿相邻的边滑动（始终贴着网格）** |
+| **`G` → `G` → `Alt`（均匀滑动）** | **按均匀间距分布** |
+
+> **★★★ 用途：调整"布线疏密"而不改变形状** ——
+> **这是"改拓扑不改轮廓"的核心操作。**
+
+**★★ 滑动时的两个辅助键**：
+
+| 键 | 作用 |
+|---|---|
+| **`E`** | **★ 允许"超出端点"**（滑过头） |
+| **`F`** | **翻转方向** |
+| **`Alt`**（按住） | **★ 均匀滑动**（各段距离相等） |
+
+### 1.8.3 ★★★ 偏移边滑动（`offset_edge_slide`，669 字符）
+
+| 项 | 值 |
+|---|---|
+| **作用** | **★ 边滑动的"固定偏移量"变体** |
+| **与 `edge_slide` 的区别** | **每次操作固定移动指定距离，而非按鼠标位置** |
+
+> **★★ 用于"精确按数值移动一圈边"。**
+
+### 1.8.4 ★★★ 顶点滑动（`slide_vertices`，869 字符）
+
+| 项 | 值 |
+|---|---|
+| **快捷键** | **`G` → `G`（顶点模式）** |
+| **作用** | **★ 顶点沿它所属的边滑动** |
+
+> **★★ 与边滑动同一机制，只是对象是单个顶点。**
+
+---
+
+## 1.9 ★★★★★ 法线与着色（`normals.xhtml` 4,619 + `shading.xhtml` ×2）
+
+> **★ 本节与 §1.1.4–1.1.7 是"同一主题的两个层次"**：
+> **那里讲"法线是什么"，这里讲"怎么操作"。**
+
+### 1.9.1 ★★★★★ 四种基础操作（`editing/normals`）
+
+| 操作 | 快捷键 | 作用 |
+|---|---|---|
+| **重算法线（向外）** | **`Shift-N`** | **★ 让所有法线指向"外侧"** |
+| **翻转法线** | **`Alt-N` → Flip** | **★ 整体反向** |
+| **设为平滑** | **`右键 → Shade Smooth`** | **★ 面之间平滑过渡** |
+| **设为平直** | **`右键 → Shade Flat`** | **★ 每个面独立（看到棱）** |
+
+**★★★★★ 一条最重要的判据：法线反了会怎样**
+
+> **★★ 法线朝内（反了）的典型症状**：
+> | 症状 | 原因 |
+> |---|---|
+> | **渲染时该面"透明"/看不见** | **★ 背面剔除** |
+> | **光照异常（该亮的地方黑）** | 法线与光源方向算错 |
+> | **布尔运算结果错乱** | ★ 布尔依赖法线判断"内外" |
+> | **Solidify/加厚方向错** | 沿法线偏移 |
+
+> **★★★ 判据：任何"看不到面 / 布尔结果错 / 加厚方向反"→ 先 `Shift-N` 重算法线。**
+> **★ 这一条能解决硬表面建模里约一半的"诡异问题"。**
+
+### 1.9.2 ★★★★ 平滑着色的三种状态（`editing/shading` 814 + 451）
+
+| 状态 | 设置方式 | 视觉 |
+|---|---|---|
+| **全平直（Flat）** | **`Shade Flat`** | **★ 每个面一个颜色（看得到棱）** |
+| **全平滑（Smooth）** | **`Shade Smooth`** | **★ 整个物体渐变（低模看起来圆）** |
+| **★ 混合（Auto Smooth）** | **Object Data → Normals → Auto Smooth + 角度** | **★ 该平的平、该圆的圆** |
+
+> **★★★ 三者的适用**：
+> | 状态 | 用于 |
+> |---|---|
+> | **Flat** | **硬表面的"平面块"（如装甲板）** |
+> | **Smooth** | **曲面件（如炮管）** |
+> | **★ Auto Smooth** | **★ 一个物体里既有平面又有曲面（最常见）** |
+
+### 1.9.3 ★★★ 面数据与边数据（`face_data` 296 / `edge_data` 1,872）
+
+| 面板 | 位置 | 能改什么 |
+|---|---|---|
+| **Face Data** | **Object Data → 选中面后** | **材质索引、平滑标记、面法线方向** |
+| **Edge Data** | **Object Data → 选中边后** | **★ Crease（折痕）、Bevel Weight（倒角权重）、Sharp（锐边标记）** |
+
+**★★★★★ `Edge Data` 里三个权重是"非破坏性建模"的关键**：
+
+| 属性 | 作用 | 谁会用 |
+|---|---|---|
+| **★ Sharp（锐边）** | **强制该边"锐利"** | **Auto Smooth / 自定义法线** |
+| **★ Crease（折痕）** | **★ 让细分曲面在该处"保持尖"** | **Subdivision Surface 修改器** |
+| **★ Bevel Weight（倒角权重）** | **★ 让 Bevel 修改器"只倒这些边"** | **Bevel 修改器** |
+
+> **★★★ 这是"用权重控制修改器"的通用模式** ——
+> **修改器读权重，权重由你标记。**
+> **★ 好处：不改几何就能控制效果，可随时改。**
+
+---
+
+## 1.10 ★★★★★ 清理与拓扑（`cleanup` / `triangles_quads` / `convex_hull` / `beautify_faces` / `to_sphere`）
+
+### 1.10.1 ★★★★ 清理（`cleanup`，2,925 字符）
+
+> **★★ 菜单：`Mesh ‣ Clean Up`**，这是"模型体检"入口。
+
+| 操作 | 检查什么 | 判据 |
+|---|---|---|
+| **★ Delete Loose（删孤立）** | **不连任何面的顶点/边** | **导入模型后必做** |
+| **★ Degenerate Dissolve（退化消除）** | **★ 面积为 0 的面 / 长度为 0 的边** | **布尔后必做** |
+| **★ Merge by Distance（按距合并）** | 距离过近的重复点 | **Mirror 应用后必做** |
+| **Fill Holes（补洞）** | 边界上的洞 | 扫描模型修复 |
+| **★ Make Planar（压平）** | **把选中面"压到一个平面"** | **硬表面的平面校正** |
+
+**★★★★★ 一条判据：布尔运算后必做的三步**
+
+```
+Boolean 之后：
+   ① Mesh → Clean Up → Degenerate Dissolve   （清退化的碎片）
+   ② Mesh → Clean Up → Merge by Distance     （合并重复点）
+   ③ Shift-N                                  （重算法线）
+```
+
+> **★★★ 为什么布尔会产生垃圾**：
+> **布尔是"切面 + 拼接"，会在切口处产生"极短边/极小面/重复点"。**
+> **★ 不清掉的话，后续倒角/细分会失败或出黑面。**
+
+### 1.10.2 ★★★ 三角/四边形转换（`triangles_quads`，2,033 字符）
+
+| 操作 | 快捷键 | 作用 |
+|---|---|---|
+| **Tris to Quads** | **`Alt-J`** | **★ 把成对的三角面合并成四边形** |
+| **Quads to Tris** | **`Ctrl-T`** | **★ 把所有面三角化** |
+
+**★★★★ 「Tris to Quads」是"修复导入模型"的关键**：
+
+> **★★ 为什么**：
+> **多数导出格式（如 OBJ/STL）会把四边形拆成三角形** ——
+> **导入后整个模型全是三角面 → 循环选择全断（§1.3.2）→ 无法建模。**
+> **★ `Alt-J` 能把"原本是四边形"的成对三角面还原回去。**
+
+**★★ 参数（`Alt-J` 的操作面板）**：
+
+| 参数 | 含义 |
+|---|---|
+| **Max Face Angle** | **★ 最大面角（超过则不合并）** |
+| **Max Shape Angle** | **最大形状偏差** |
+| **Compare UVs** | **★ 考虑 UV 是否一致** |
+
+> **★★★ 判据：`Alt-J` 不是万能的** ——
+> **它只能合并"能拼成合理四边形"的三角形对。**
+> **★ 原本就是三角面（如 Ico 球）不会被"还原"。**
+
+### 1.10.3 ★★★ 凸包（`convex_hull`，1,200 字符）
+
+| 项 | 值 |
+|---|---|
+| **作用** | **★ 生成"包住所有选中元素"的最小凸多面体** |
+| **结果** | **★ 新建一个物体（原物体保留）** |
+
+> **★★ 用途：做"碰撞体"或"包裹壳"** ——
+> **物理模拟里的碰撞检测常用凸包（因为凸体计算快）。**
+
+### 1.10.4 ★★★ 面美化（`beautify_faces`，365 字符）
+
+| 项 | 值 |
+|---|---|
+| **作用** | **★ 把 n-gon 重新排列成"更规整"的形状** |
+
+> **★★ 用于"三角化后的面乱七八糟"时整理。**
+
+### 1.10.5 ★★★ 变球（`to_sphere`，1,025 字符）
+
+| 项 | 值 |
+|---|---|
+| **作用** | **★ 把选中部分"投影到球面"** |
+| **参数** | **Factor（投影强度 0~1）** |
+
+> **★★ 与 §1.6.1 的「Subdivide + Smoothness=1」是两种"变圆"手段**：
+> | 手段 | 机制 |
+> |---|---|
+> | **Subdivide + Smoothness=1** | **细分时直接投影** |
+> | **★ To Sphere** | **★ 对已存在的顶点投影** |
+
+---
+
+## 1.11 ★★★★ 镜像与对称（`mirror` 1,864 / `symmetrize` 791 / `snap_symmetry` 965）
+
+### 1.11.1 ★★★★ 镜像（`editing/mirror`，1,864 字符）
+
+| 项 | 值 |
+|---|---|
+| **快捷键** | **`Ctrl-M`** |
+| **作用** | **★ 把选中部分"镜像到另一侧"** |
+| **前提** | **★ 必须指定镜像轴（按 `X`/`Y`/`Z`）** |
+
+**★★★★★ 一个必须注意的差别：编辑模式 Mirror vs 修改器 Mirror**：
+
+| 方式 | 结果 | 可逆 |
+|---|---|---|
+| **`Ctrl-M`（编辑模式）** | **★ 真的复制出几何体** | **❌ 不可逆（除非撤销）** |
+| **Mirror 修改器** | **★ 显示上镜像，几何未变** | **✅ 可随时关掉/调整** |
+
+> **★★★ 判据：能用修改器就用修改器** ——
+> **因为硬表面的对称是"设计意图"，应该保留可编辑性。**
+> **★ 只有在"必须应用"时才用 `Ctrl-M`。**
+
+### 1.11.2 ★★★ 对称化（`symmetrize`，791 字符）
+
+| 项 | 值 |
+|---|---|
+| **作用** | **★ 把"一侧"复制到另一侧，并删除原来另一侧的几何** |
+
+**★★ 与 Mirror 的区别**：
+
+```
+Mirror:      把 A 侧镜像出 B 侧（A 保留，B 新建）→ 两侧可能"打架"
+Symmetrize:  把 A 侧复制到 B 侧，★ 同时删掉原 B 侧 → 强制完全对称
+```
+
+> **★★★ 用途：模型"只有一半是对的"时，用 Symmetrize 强制统一。**
+
+### 1.11.3 ★★★ 对称吸附（`snap_symmetry`，965 字符）
+
+| 项 | 值 |
+|---|---|
+| **作用** | **★ 吸附时"自动镜像到对称位置"** |
+| **前提** | **开启拓扑对称（Topology Mirror / X Mirror）** |
+
+> **★★ 用于"对称模型只做一半，另一半自动跟随"** ——
+> **但注意：它依赖"拓扑对称"，即两侧的顶点数量/连接必须一致。**
+
+---
+
+## 1.12 ★★★★★ 顶点组与权重（`assigning_vertex_group` 5,146 / `vertex_weights` 5,031 / `vertex_groups` 3,204）
+
+> **★ 合计 13,381 字符** —— **是 `meshes` 区里"非几何"部分最大的。**
+
+### 1.12.1 ★★★★★ 为什么硬表面也需要顶点组
+
+> **★★★ 顶点组不是"只给角色绑定用的"** ——
+> **在硬表面里，它控制三件事**：
+
+| 用途 | 谁读它 |
+|---|---|
+| **★ 修改器的作用范围** | **Bevel / Displace / Solidify 等都可"限定到某顶点组"** |
+| **★ 骨骼蒙皮权重** | **Armature 修改器** |
+| **★ 顶点组作为"选择集"** | **可以随时"选出这些点"** |
+
+> **★★ 判据：把"一整组顶点"存成顶点组，等于给模型加了"可复用的选择书签"。**
+
+### 1.12.2 ★★★ 创建与赋值（`assigning_vertex_group`）
+
+| 操作 | 位置 |
+|---|---|
+| **新建顶点组** | **Object Data Properties → Vertex Groups → `+`** |
+| **★ 把选中顶点加入组** | **选中顶点 → 组右侧 → `Assign`** |
+| **★ 从组中移除** | **`Remove`** |
+| **★ 选中组内顶点** | **`Select`** |
+| **取消选中组内顶点** | **`Deselect`** |
+
+**★★★★★ 四个按钮的分工（最易混）**：
+
+| 按钮 | 作用 |
+|---|---|
+| **Assign** | **★ 把当前选中的顶点"加入"该组** |
+| **Remove** | **★ 把当前选中的顶点"移出"该组** |
+| **Select** | **★ 把该组的顶点"选中"**（不改组，只改选择状态） |
+| **Deselect** | **★ 把该组的顶点"取消选中"** |
+
+> **★★★ 判据：**
+> **`Assign/Remove` 改"组的内容"；`Select/Deselect` 改"选择状态"。**
+> **★ 新手常把 `Select` 当成 `Assign`，结果组永远是空的。**
+
+### 1.12.3 ★★★★★ 权重（`vertex_weights`，5,031 字符）
+
+> **★★ 每个顶点在一个组里有一个"权重值"（0~1）** ——
+> **不是一个点"属于/不属于"，而是"属于多少"。**
+
+| 权重 | 含义 |
+|---|---|
+| **0** | **★ 完全不属于** |
+| **0.5** | **★ 一半影响** |
+| **1** | **★ 完全属于** |
+
+**★★★★ 调整权重的两个工具**：
+
+| 工具 | 位置 | 用途 |
+|---|---|---|
+| **Weight Paint（权重绘制）** | **切到 Weight Paint 模式** | **★ 用笔刷画权重** |
+| **Vertex Weight 面板** | **`N` 面板 → Item → Vertex Weights** | **★ 直接输入精确数值** |
+
+**★★★★★ 硬表面里的典型用法**：
+
+```
+给一个"装甲板"分组：
+   ① 选中该装甲板的所有顶点
+   ② 新建顶点组 "armor_plate_01"
+   ③ Assign 权重 1.0
+   ④ ★ 给它加一个 Bevel 修改器，Vertex Group 选 "armor_plate_01"
+   ⑤ → Bevel 只作用于这块板
+```
+
+> **★★★ 这样"每块装甲板可以有不同的倒角宽度"，而不用拆成多个物体。**
+> **★ 这是硬表面"非破坏性细节"的核心技巧。**
+
+### 1.12.4 ★★★ 顶点组的管理（`vertex_groups`，3,204 字符）
+
+| 操作 | 说明 |
+|---|---|
+| **重命名** | 双击组名 |
+| **★ 锁定** | **锁住的组不会被"自动赋值"改动** |
+| **★ 调整顺序** | 拖动（顺序影响"多个 Armature 修改器"的叠加） |
+| **删除** | 选中 → `-` |
+
+> **★★ 锁定功能在"多个修改器读写同一组"时很关键** ——
+> **防止上一个修改器的结果被下一个覆盖。**
+
+---
+
+## 1.13 ★★★★★ UV 展开（`meshes/uv/*`，15 个文件 / 38,196 字符）
+
+> **★★★ 本节是"上贴图的前提"** ——
+> **没有 UV，贴图无从谈起。**
+
+### 1.13.1 ★★★★ UV 的概念（`uv/introduction`，2,835 字符）
+
+> **★★ 核心：把 3D 表面"摊平"到 2D 平面（UV 空间）。**
+
+| 术语 | 含义 |
+|---|---|
+| **UV** | **2D 纹理坐标（U = 横，V = 纵）** |
+| **UV 岛（UV Island）** | **★ 展开后"不连通"的每一块** |
+| **接缝（Seam）** | **★ 标记"从哪里剪开"的边** |
+
+> **★★★ 关键关系**：
+```
+接缝（Seam）决定"在哪剪"
+   ↓ 剪开后摊平
+UV 岛（Island）
+   ↓ 排布到 0~1 空间
+UV 布局（Layout）
+```
+
+### 1.13.2 ★★★★★ 标记接缝（`uv/seams`，4,142 字符）
+
+| 操作 | 快捷键 | 作用 |
+|---|---|---|
+| **标记接缝** | **`Ctrl-E` → Mark Seam** | **★ 标记该边为"剪开处"** |
+| **清除接缝** | **`Ctrl-E` → Clear Seam** | 取消标记 |
+
+**★★★★★ 接缝怎么选（本节最实用的一条）**：
+
+> **★★ 三条原则**：
+> | 原则 | 理由 |
+> |---|---|
+> | **① 藏在看不见的地方** | **接缝处贴图会"对不上"** |
+> | **② 沿"最少拉伸"的方向** | **曲率变化小的地方剪开，展开后变形小** |
+> | **③ 避开高光/大平面** | 那里的瑕疵最明显 |
+
+> **★★★ 硬表面的典型接缝位置**：
+> **棱边、分型线、装甲板缝隙、物体背面。**
+> **★ 因为硬表面本来就有"分块"，接缝可以藏在真实的接缝里。**
+
+### 1.13.3 ★★★★★ 展开（`uv/editing`，7,785 字符）
+
+| 操作 | 快捷键 | 作用 |
+|---|---|---|
+| **展开** | **`U` → Unwrap** | **★ 按接缝展开** |
+| **Smart UV Project** | **`U` → Smart UV Project`** | **★ 自动切分并展开（不需接缝）** |
+| **Cube Projection** | **`U` → Cube Projection`** | **按立方体六面投影** |
+| **Cylinder Projection** | **`U` → Cylinder Projection`** | 按圆柱投影 |
+| **Sphere Projection** | **`U` → Sphere Projection`** | 按球面投影 |
+| **Project from View** | **`U` → Project from View`** | **★ 按当前视角投影** |
+
+**★★★★★ 六种展开方式的选择判据**：
+
+| 方式 | 用于 | 优点 | 缺点 |
+|---|---|---|---|
+| **Unwrap（接缝展开）** | **★ 有机件/复杂曲面** | **变形最小** | **★ 必须手工标接缝** |
+| **★ Smart UV Project** | **★ 硬表面/机械件** | **★ 全自动，不需接缝** | 岛多、接缝随机 |
+| **Cube Projection** | **★ 长方体/箱子** | **六面各一个岛，极规整** | 斜面会拉伸 |
+| **Cylinder Projection** | **圆柱/管** | 沿周长展开 | 端盖需另外处理 |
+| **Sphere Projection** | 球体 | 经纬展开 | 两极压缩 |
+| **Project from View** | **★ 贴花/匹配参考图** | **所见即所得** | 只适用"近似平面" |
+
+> **★★★ 判据：硬表面 90% 的情况用 `Smart UV Project` 起步** ——
+> **因为硬表面模型"面数多、块面多"，手工标接缝成本高。**
+> **★ 只有需要"极致控制 UV 布局"时，才手工 Unwrap。**
+
+### 1.13.4 ★★★★★ UV 布局（`uv/layout`，7,743 字符）
+
+| 操作 | 快捷键 | 作用 |
+|---|---|---|
+| **旋转 UV 岛 90°** | **`R`** | — |
+| **缩放 UV 岛** | **`S`** | — |
+| **移动 UV 岛** | **`G`** | — |
+| **★ 打包 UV 岛** | **`Ctrl-P`（UV Editor 内）/ `U` → Pack Islands** | **★ 自动排布到 0~1 空间** |
+| **★ 平均岛大小** | **`Ctrl-A`** | **让各岛"像素密度一致"** |
+
+**★★★★★ 两条判据**：
+
+**① 所有 UV 岛必须落在 0~1 范围内**
+> **★★ 超出 0~1 的部分会"平铺重复"或"没贴图"。**
+
+**② 岛与岛的"像素密度"要一致**
+> **★★ 密度不一致 → 有的地方糊、有的地方锐** ——
+> **因为每个岛分到的纹理像素数不同。**
+
+> **★★★ 操作顺序：`Pack Islands`（排布）→ `Average Island Scale`（统一密度）→ 再微调。**
+
+### 1.13.5 ★★★ UDIM（`uv/udims`，3,714 字符）
+
+> **★★ UDIM = 把 UV 空间扩展成"多块 0~1 瓦片"** ——
+> **可以把不同部件放在不同的 UV 瓦片上，各自用一张贴图。**
+
+| 概念 | 含义 |
+|---|---|
+| **Tile（瓦片）** | **★ 每一块 0~1 空间（编号 1001、1002…）** |
+| **用途** | **★ 大模型/多零件分别贴图** |
+
+> **★★ 硬表面里 UDIM 特别有用** ——
+> **因为"每块装甲板一张贴图"比"全部挤在一张"清晰得多。**
+
+### 1.13.6 ★★★ UV 工具的其他入口
+
+| 工具 | 文件 | 作用 |
+|---|---|---|
+| **Relax（松弛）** | `relax` 2,081 | **★ 减少 UV 折叠/拉伸** |
+| **Pinch（收缩）** | `pinch` 1,746 | 反向：更紧致 |
+| **Grab（抓取）** | `grab` 1,669 | 拉动 UV 局部 |
+| **Rip（撕裂）** | `rip` 280 | 在 UV 编辑器里撕开岛 |
+| **UV 纹理空间** | `uv_texture_spaces` 1,987 | 多套 UV 的切换 |
+| **应用图像** | `applying_image` 2,755 | UV 编辑器里显示贴图 |
+| **工具栏** | `toolbar` 727 | UV 编辑器的工具面板 |
+
+> **★★ 「Relax」在"展开后有明显折叠"时必用** ——
+> **它能把折叠的 UV 逐渐摊平。**
+
+---
+
+## 1.14 ★★★★★ 螺旋（`screw.xhtml`，19,049 字符）
+
+> **★★★ 这是 `meshes` 区单篇最大的工具** ——
+> **19,049 字符，超过很多整章。**
+
+### 1.14.1 ★★★★ Screw 是什么
+
+> **★★ Screw（螺旋）把"一个 2D 轮廓"绕轴旋转，同时沿轴"抬升"，形成三维螺旋。**
+
+| 参数 | 作用 |
+|---|---|
+| **Axis（轴）** | **★ 绕哪个轴旋转（X/Y/Z）** |
+| **Screw（总角度）** | **★ 转多少度**（360 = 一整圈） |
+| **Steps（步数）** | **★ 分段数**（越大越平滑） |
+| **★ Turns（圈数）** | **★ 转几圈**（配合 Screw 角度） |
+| **★ Offset（偏移）** | **★ 每圈沿轴上升多少** |
+
+**★★★★★ 两种模式**：
+
+| 模式 | 结果 | 典型用途 |
+|---|---|---|
+| **★ Screw（螺旋）** | **★ 边转边升（真螺旋）** | **弹簧、螺纹、螺旋楼梯** |
+| **★ Extrude（旋转挤出）** | **★ 只转不升（回转体）** | **花瓶、瓶子、车削件** |
+
+> **★★★ 一条判据：Offset = 0 就是"车削"，Offset ≠ 0 就是"螺旋"。**
+
+### 1.14.2 ★★★★★ 车削（Lathe）的做法（Offset = 0）
+
+```
+① 在正视图（Front/Numpad 1）里，画一条"剖面轮廓线"
+   （只有一边，如花瓶的右半边）
+② 选中这条线
+③ Screw：
+   Axis = Z（绕竖直轴）
+   Screw = 360°
+   Steps = 32~64
+   ★ Offset = 0
+④ → 得到一个回转体
+```
+
+> **★★★ 这是"用 2D 画 3D 回转体"的标准流程** ——
+> **任何"车床能加工的形状"都能这么做。**
+> **★ 好处：改轮廓线 → 物体自动更新（如果保留着可编辑状态）。**
+
+### 1.14.3 ★★★★ 螺旋（Helix）的做法（Offset ≠ 0）
+
+```
+① 画一条"小横线"（弹簧的丝径截面）
+② Screw：
+   Screw = 360° × N（N 圈）
+   ★ Offset = 相邻两圈的间距
+③ → 得到螺旋弹簧
+```
+
+### 1.14.4 ★★★★ 螺纹（Thread）的做法
+
+> **★★ 螺纹其实是"螺旋 + 特定截面"**：
+> **截面是"三角/梯形"，螺旋的 Offset = 螺距。**
+
+> **★★★ 但注意：Screw 做出来的螺纹"顶点极多"** ——
+> **实际生产用的是"法线贴图假螺纹"，不是真几何。**
+
+### 1.14.5 ★★★ 关键选项（原文 Options）
+
+| 选项 | 含义 |
+|---|---|
+| **★ Axis Screw** | **螺旋轴（X/Y/Z）+ 正负方向** |
+| **Axis Object** | **★ 改用某个物体的坐标轴** |
+| **Steps** | 分段数 |
+| **Render Steps** | 渲染时的额外细分 |
+| **Screw** | 总角度 |
+| **Iterations** | **★ 重复次数（每段重复）** |
+| **★ Normal Calc** | **法线计算方式** |
+| **Stretch** | 沿轴拉伸 |
+| **★ Smooth** | **★ 平滑（避免螺旋面有棱）** |
+| **Merge** | 合并首尾顶点 |
+
+> **★★ 「Merge」在"要做成闭合圆环"时必须开** ——
+> **否则首尾会有一个缝。**
+
+---
+
+## 1.15 ★★★★ 形变类工具（`warp` / `bend` / `shear` / `shrink-fatten` / `randomize` / `smooth_vertices` / `laplacian_smooth`）
+
+### 1.15.1 ★★★★ 七种形变对照
+
+| 工具 | 快捷键 | 作用 | 源文件 |
+|---|---|---|---|
+| **弯曲** | **`Shift-W`** | **★ 沿轴弯曲** | `bend` 1,602 |
+| **扭曲** | **`Shift-W` → Warp** | **★ 按鼠标位置扭曲** | `warp` 1,648 |
+| **错切** | （`Mesh ‣ Transform ‣ Shear`） | **★ 沿轴倾斜** | `shear` 2,019 |
+| **收缩/膨胀** | **`Alt-S`** | **★ 沿法线内外偏移** | `shrink-fatten` 640 |
+| **随机化** | **`Mesh ‣ Transform ‣ Randomize`** | **★ 顶点随机偏移** | `randomize` 474 |
+| **平滑顶点** | **`Mesh ‣ Vertices ‣ Smooth Vertices`** | **★ 让顶点向平均位置靠拢** | `smooth_vertices` 708 |
+| **拉普拉斯平滑** | **`Mesh ‣ Vertices ‣ Laplacian Smooth`** | **★ 更保形的平滑** | `laplacian_smooth` 705 |
+
+**★★★★★ 三个最常用的**：
+
+**① `Shift-W`（弯曲 / Bend）**
+> **★★ 使用时鼠标会出现"三个圆环"，拖动即弯曲。**
+> **★ 参数：Angle（角度）、Axis（轴）、Origin（支点）。**
+
+**② `Alt-S`（收缩膨胀）**
+> **★★ 沿"顶点法线"方向移动** ——
+> **正值膨胀，负值收缩。**
+> **★ 用途：整体"胖一点/瘦一点"而不改拓扑。**
+
+**③ `Smooth Vertices`（平滑）**
+> **★★ 消除"表面凹凸/噪点"的标准操作。**
+> **★ 参数：Repeat（重复次数）—— 次数越多越平滑，但也越"塌"。**
+
+> **★★★ 判据：平滑是"平均化"，所以会让尖角变圆、体积变小。**
+
+### 1.15.2 ★★★ 拉普拉斯平滑 vs 普通平滑
+
+| 项 | Smooth Vertices | **Laplacian Smooth** |
+|---|---|---|
+| **算法** | **简单平均** | **★ 基于拉普拉斯算子（保形）** |
+| **保形性** | **★ 差（会缩小体积）** | **★ 好** |
+| **参数** | Repeat | **Lambda / Lambda Border** |
+
+> **★★★ 判据：要"保形"用 Laplacian，要"快速磨平"用普通 Smooth。**
+
+---
+
+## 1.16 ★★★★★ 删除、切割与布尔（`delete` / `bisect` / `intersect_knife` / `intersect_boolean`）
+
+### 1.16.1 ★★★★ 切割（`bisect`，763 字符）
+
+| 项 | 值 |
+|---|---|
+| **位置** | **`Mesh ‣ Bisect`** |
+| **作用** | **★ 用一个平面"切一刀"** |
+
+**★★ 四个关键选项**：
+
+| 选项 | 作用 |
+|---|---|
+| **Plane Point / Plane Normal** | **★ 定义切割平面** |
+| **★ Clear Inner / Clear Outer** | **★ 删掉一侧的几何** |
+| **Fill** | **★ 切开后把切口封上** |
+
+> **★★★ 判据：`Bisect` = "平面切割 + 可选删除一半 + 可选封口"。**
+> **★ 它比"Knife"更精确（因为是数学平面）。**
+
+### 1.16.2 ★★★★ 切割投影（`intersect_knife`，1,380 字符）
+
+| 项 | 值 |
+|---|---|
+| **位置** | **`Face ‣ Intersect (Knife)`** |
+| **作用** | **★ 把"选中部分与未选中部分"的相交处切开** |
+
+> **★★ 用途：把"穿插在一起的两个零件"切成"各自的接缝"。**
+> **★ 注意：它只"切"不"删"。**
+
+### 1.16.3 ★★★★★ 相交布尔（`intersect_boolean`，1,565 字符）
+
+| 项 | 值 |
+|---|---|
+| **位置** | **`Face ‣ Intersect (Boolean)`** |
+| **作用** | **★ 直接在编辑模式里做布尔运算** |
+
+**★★★★ 三种布尔运算**：
+
+| 运算 | 结果 |
+|---|---|
+| **★ Union（并集）** | **合成一个整体** |
+| **★ Difference（差集）** | **从 A 挖掉 B** |
+| **★ Intersect（交集）** | **只留共同部分** |
+
+> **★★★ 编辑模式布尔 vs Boolean 修改器的区别**：
+> | 方式 | 特点 |
+> |---|---|
+> | **编辑模式 `Face ‣ Intersect (Boolean)`** | **★ 立刻生效，不可逆** |
+> | **★ Boolean 修改器** | **★ 非破坏性，可随时关掉/切换运算** |
+
+> **★★ 判据：能用修改器就用修改器**（同 §1.11.1 的理由）。
+
+---
+
+## 1.17 ★★★★★ 本章判据总表（共 62 条）
+
+### 网格结构（1.1）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 1 | **★★★ 网格 = 顶点 + 边 + 面** | `structure` |
+| 2 | **★★★ 顶点以"坐标数组"存储**（只有位置，无几何属性） | `structure` |
+| 3 | **★★★★ 顶点 vs 原点**：顶点小、可选；原点大、**★ 选不中** | `structure` |
+| 4 | **★★★ 边必须连接"两个"顶点**（不存在一端/三端的边） | `structure` |
+| 5 | **★★★ 边的作用是"构造面"**（线框可见、渲染不可见） | `structure` |
+| 6 | **★★★★★ 三种面**：tris（永远平、易算）/ **quads（deform well）** / n-gons | **`structure`** |
+| 7 | **★★★★★ 判据：动画 + 细分建模 → 用四边形**（形变好） | **`structure`** |
+| 8 | **★★★★ 法线 = 垂直方向**（相对面/线/切平面） | `structure` |
+| 9 | **★★ 显示法线**：Edit Mode → Viewport Overlays → Mesh Display | `structure` |
+| 10 | **★★★★★ Auto Smooth**：夹角 < 阈值 → 平滑；≥ → 锐利 | **`structure`** |
+| 11 | **★★★★★ 锐边两种定义**：非流形/有 flat 面 → 锐；Auto Smooth 后**再加"夹角≥阈值"** | **`structure`** |
+| 12 | **★★★★ 开了 Auto Smooth 后，"面设 flat"仍强制锐利**（比调角度更硬） | `structure` |
+| 13 | **★★★★ Custom Split Normals**：改法线方向"骗"着色，低模装高模 | **`structure`** |
+| 14 | **★★★ smooth fan**：共享顶点 + 由平滑边连接的面角组 | `structure` |
+| 15 | **★★★★★ 副作用：启用自定义法线后，Auto Smooth 角度阈值失效** | **`structure`** |
+| 16 | **★★★★ 后果**：必须手动 `Mark Sharp` 标记该锐的边 | `structure` |
+| 17 | **★★ 双模式选择**：用 `Shift-LMB` 同时开"顶点 + 面"才能选面角法线 | `structure` |
+
+### 基本体与选择（1.2–1.3）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 18 | **★★★ Circle 没有面**（试图对它做面操作会失败） | `primitives` |
+| 19 | **★★★ 三种元素模式**：`1` 顶点 / `2` 边 / `3` 面；可 `Shift` 叠加 | `selecting/intro` |
+| 20 | **★★★★★ 循环（Loop）vs 环（Ring）**：循环"顺着走"，环"横着切" | **`selecting/loops`** |
+| 21 | **★★★★ `Alt-LMB` 选循环**，`Ctrl-Alt-LMB` 选环 | `selecting/loops` |
+| 22 | **★★★★★ 一个三角面就能打断整条循环**（→ 硬表面坚持全四边形） | **`selecting/loops`** |
+| 23 | **★★★ `Ctrl-L` 按"几何连通性"选**，与距离无关 | `selecting/linked` |
+| 24 | **★★ `L` 选鼠标下连通部分；`Ctrl-L` 以当前选择为种子扩散** | `selecting/linked` |
+| 25 | **★★★★★ `Shift-G → By Co-Planar` 一键选中一个平面块** | **`selecting/similar`** |
+| 26 | **★★★★ `Shift-G → By Normal` 选中所有朝同方向的面** | `selecting/similar` |
+| 27 | **★★★★ `Ctrl-+` / `Ctrl--` 扩缩一圈**（比框选精确） | `selecting/more_less` |
+| 28 | **★★★ `Shift-G → Sharp Edges` 批量选中 sharp 边**（配合 §1.1.7） | `selecting/sharp_edges` |
+
+### 基础编辑（1.4）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 29 | **★★★★★ 「删除」留洞 vs「Dissolve 解散」不留洞** | **`editing/delete`** |
+| 30 | **★★ `X → Only Faces` 只删面保留边界线** | `editing/delete` |
+| 31 | **★★★★ `Shift-D` 复制不连接；`E` 挤出是连接的** | **`editing/duplicate`** |
+| 32 | **★★★★★ `M → By Distance` 是清理重复点的标准操作** | **`editing/merge`** |
+| 33 | **★★★★ 判据：Mirror 应用后 / 导入模型后必做 By Distance** | `editing/merge` |
+| 34 | **★★★ `Y` Split（撕开、顶点翻倍）vs `P` Separate（分离成新物体）** | `editing/split` |
+
+### 挤出（1.5）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 35 | **★★★★★ 三种面挤出**：Region（`E`，连在一起）/ **Along Normals**（各自法线）/ **Individual**（完全散开） | **`extrude*`** |
+| 36 | **★★★ `E` → `Esc` 组合**：生成重叠新面，再定位（先建后移） | `extrude_region` |
+| 37 | **★★ `Shift-Z` 锁定"除 Z 外"的平面** | `extrude_region` |
+
+### 细分与插入（1.6）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 38 | **★★★★★ `Subdivide` 的 `Smoothness=1` → 顶点投影到球面**（粗糙立方体变圆的捷径） | **`subdivide`** |
+| 39 | **★★★ `I` 插入面**：`I` 后再 `I` 切"各自插入" | `inset_faces` |
+| 40 | **★★ 插入面用途：给硬表面"镶边"**（内缩一圈再挤出） | `inset_faces` |
+| 41 | **★★ `Poke Faces`**：面中心加点，切成扇形三角形 | `poke_faces` |
+
+### 倒角（1.7）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 42 | **★★★ 三种入口**：`Ctrl-B` 倒边 / `Ctrl-Shift-B` 倒顶点 / Bevel 修改器 | `bevel` |
+| 43 | **★★★★★ `Segments` 决定"斜角"还是"圆角"**：1=斜切，**2~3=硬表面最常用** | **`bevel`** |
+| 44 | **★★★★★ `Clamp Overlap` 必开**（否则倒角吃掉相邻边 → 自交/黑面） | **`bevel`** |
+| 45 | **★★★★ `Profile` 控制凹/凸**：<0.5 凹，0.5 正圆，>0.5 凸 | `bevel` |
+| 46 | **★★★ `Width Type`**：Offset/Width/Depth/Percent/Absolute | `bevel` |
+| 47 | **★★ `Loop Slide`**：倒角沿循环平滑过渡 | `bevel` |
+| 48 | **★★★ 顶点倒角 `Ctrl-Shift-B` 产生"一个面"**（去掉尖角的高光点） | `bevel_vertices` |
+
+### 循环滑动（1.8）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 49 | **★★★★★ `Ctrl-R` 三阶段**：悬停选边 → 滚轮定数量 → 点击 → 滑动 → 点击 | **`loopcut_slide`** |
+| 50 | **★★★★ `Ctrl-R` 的右键 = "归中"不是"取消"**（取消用 `Esc`） | **`loopcut_slide`** |
+| 51 | **★★★ `G`→`G` 边滑动**：始终贴表面（不脱离几何） | `edge_slide` |
+| 52 | **★★ 滑动时 `Alt`（按住）= 均匀分布**；`E` = 允许超出端点 | `edge_slide` |
+
+### 法线着色（1.9）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 53 | **★★★★★ 法线反了的四大症状**：面看不见 / 光照异常 / **布尔错乱** / 加厚方向反 | **`editing/normals`** |
+| 54 | **★★★★★ 判据：遇到上述症状先 `Shift-N` 重算法线**（解决约一半诡异问题） | **`editing/normals`** |
+| 55 | **★★★ 着色三状态**：Flat（看得到棱）/ Smooth（渐变）/ **Auto Smooth（混合）** | `editing/shading` |
+| 56 | **★★★★★ Edge Data 三权重**：**Sharp（锐边）/ Crease（折痕）/ Bevel Weight（倒角权重）** | **`editing/edge_data`** |
+| 57 | **★★★★ Crease 让细分"保持尖"；Bevel Weight 让修改器"只倒这些边"** | `editing/edge_data` |
+
+### 清理拓扑（1.10）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 58 | **★★★★★ 布尔后必做三步**：Degenerate Dissolve → Merge by Distance → `Shift-N` | **`cleanup`** |
+| 59 | **★★★ 为什么**：布尔在切口产生极短边/极小面/重复点，不清会致倒角细分失败 | `cleanup` |
+| 60 | **★★★★★ `Alt-J`（Tris to Quads）修复导入模型**：成对三角面还原成四边形 | **`triangles_quads`** |
+| 61 | **★★★ 为什么重要**：OBJ/STL 会拆四边形→循环全断→无法建模 | `triangles_quads` |
+| 62 | **★★ `Alt-J` 的边界**：只能合并"能拼成合理四边形"的对，原三角面不会变 | `triangles_quads` |
+
+### 镜像对称（1.11）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 63 | **★★★★★ `Ctrl-M`（编辑模式镜像）真的复制几何、不可逆；Mirror 修改器非破坏性** | **`editing/mirror`** |
+| 64 | **★★★ 判据：能用修改器就用修改器**（对称是设计意图，应保留可编辑性） | `editing/mirror` |
+| 65 | **★★★ Symmetrize：复制一侧到另一侧并删除原另一侧**（强制完全对称） | `symmetrize` |
+| 66 | **★★ `Snap Symmetry` 依赖"拓扑对称"**（两侧顶点数与连接须一致） | `snap_symmetry` |
+
+### 顶点组（1.12）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 67 | **★★★★★ 顶点组在硬表面控制三件事**：修改器作用范围 / 蒙皮权重 / **可复用选择书签** | **`assigning_vertex_group`** |
+| 68 | **★★★★★ `Assign/Remove` 改组内容；`Select/Deselect` 只改选择状态** | **`assigning_vertex_group`** |
+| 69 | **★★★ 新手常把 `Select` 当 `Assign` → 组永远是空的** | `assigning_vertex_group` |
+| 70 | **★★★ 权重是 0~1 连续值**（不是"属于/不属于"），可 0.5 半影响 | `vertex_weights` |
+| 71 | **★★★★★ 非破坏性细节技巧**：每块装甲板一个顶点组 + Bevel 修改器限定 → 各自不同倒角宽度 | **`vertex_weights`** |
+| 72 | **★★ 锁定的顶点组不会被"自动赋值"改动**（多修改器叠加时关键） | `vertex_groups` |
+
+### UV（1.13）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 73 | **★★★ 链条：接缝（Seam）决定在哪剪 → 剪开成 UV 岛 → 排布到 0~1** | `uv/introduction` |
+| 74 | **★★★★★ 接缝三原则**：藏看不见处 / 沿最少拉伸方向 / 避开高光与大平面 | **`uv/seams`** |
+| 75 | **★★★ 硬表面接缝可藏在"真实分块缝"里**（棱边/分型线/装甲板缝） | `uv/seams` |
+| 76 | **★★★★★ 六种展开的判据**：有机件用 Unwrap；**硬表面 90% 从 Smart UV Project 起步** | **`uv/editing`** |
+| 77 | **★★ Cube Projection 适合长方体**（六面各一岛，极规整） | `uv/editing` |
+| 78 | **★★★ Project from View 用于贴花/匹配参考图**（所见即所得） | `uv/editing` |
+| 79 | **★★★★★ 两条铁律**：所有岛必须在 0~1 内；**岛与岛像素密度必须一致** | **`uv/layout`** |
+| 80 | **★★★ 操作顺序**：Pack Islands → Average Island Scale → 微调 | `uv/layout` |
+| 81 | **★★★ UDIM**：把 UV 扩展成多块 0~1 瓦片（大模型/多零件分别贴图） | `uv/udims` |
+| 82 | **★★ 展开后有折叠 → 用 Relax** | `uv/relax` |
+
+### Screw（1.14）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 83 | **★★★★★ Screw 的核心判据**：**Offset = 0 是车削（回转体），Offset ≠ 0 是螺旋** | **`screw`** |
+| 84 | **★★★★ 车削流程**：正视图画半边轮廓 → Screw(Axis=Z, 360°, Steps 32~64, Offset=0) | **`screw`** |
+| 85 | **★★★ 螺旋流程**：画丝径截面 → Screw(360°×N, Offset=螺距) | `screw` |
+| 86 | **★★ 螺纹实际用"法线贴图假螺纹"**，不用真几何（顶点太多） | `screw` |
+| 87 | **★★ 要做闭合圆环必须开 `Merge`**（否则首尾有缝） | `screw` |
+
+### 形变（1.15）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 88 | **★★★ `Shift-W` 弯曲 / `Alt-S` 沿法线收缩膨胀** | `bend`/`shrink-fatten` |
+| 89 | **★★ `Alt-S` 正值膨胀、负值收缩**（不改拓扑改体积） | `shrink-fatten` |
+| 90 | **★★★ 平滑会让"尖角变圆、体积变小"**（因为是平均化） | `smooth_vertices` |
+| 91 | **★★★★ Laplacian Smooth 保形，普通 Smooth 不保形** | **`laplacian_smooth`** |
+
+### 切割布尔（1.16）
+
+| # | 判据 | 出处 |
+|---|---|---|
+| 92 | **★★★ `Bisect` = 平面切割 + 可选删一侧（Clear Inner/Outer）+ 可选封口（Fill）** | **`bisect`** |
+| 93 | **★★ `Intersect (Knife)` 只切不删**（把穿插两件切成接缝） | `intersect_knife` |
+| 94 | **★★★★ 三种布尔**：Union / Difference / Intersect | `intersect_boolean` |
+| 95 | **★★★ 编辑模式布尔立刻生效不可逆；Boolean 修改器非破坏性** | `intersect_boolean` |
+
+---
+
+## 1.18 ★★★ 本章的空白
+
+| 缺什么 | 手册情况 | 该去哪查 |
+|---|---|---|
+| **★★★ 三角形为何要避开动画的完整论证** | **只给 See also 链接标题，不给答案** | **FAQ 原页（本版未收录）** |
+| **★★ N-gon 何时该用的判据** | **同上（只给链接标题）** | FAQ |
+| **★★ 各基本体的默认参数值** | **以"操作面板"形式给，非 Reference 表** | 实际操作面板 / 本版未逐项抄 |
+| **★★ `Shift-W` 弯曲的完整参数** | 本节按常用参数归纳，原文 1,602 字符未逐条译 | `editing/bend.xhtml` |
+| **★★ UV 展开的图解** | **手册靠图说明，文本提取无图** | 原 PDF/网页 |
+| **★★ Crease 的具体数值范围** | 未在本节给出 | `edge_data` 原文 |
+| **★ Screw 的完整示例步骤** | 19,049 字符含大量图示步骤，本版提炼了三种典型做法 | `screw.xhtml` |
+
+> **★★★ 本节的空白主要是"图"** ——
+> **手册大量依赖截图说明（如 UV 展开、倒角形状），**
+> **文本提取后这些信息丢失，本版用"参数逻辑 + 判据"补足，但不伪造图。**
+
+---
+
+## 1.19 ★★★ 三条方法论
+
+### ① ★★★★★ "全四边形"是硬表面的地基
+
+> **★★★ 从 §1.3.2 的"一个三角面打断整条循环"、到 §1.6.1 的细分、
+> 到 §1.10.2 的 `Alt-J` 修复 —— 全都指向同一件事：**
+> **四边形 → 循环可选 → 布线可控 → 细节可加。**
+>
+> **★ 所以导入模型的第一件事是 `Alt-J`（Tris to Quads）。**
+
+### ② ★★★★★ "法线是一切诡异问题的第一嫌疑"
+
+> **★★ 面看不见、布尔错乱、加厚反向 —— 全可能是法线反了。**
+> **★ `Shift-N` 是成本最低的一次尝试。**
+
+### ③ ★★★★ "非破坏性优先"
+
+> **★★★ 本节的六处对比都指向同一判据**：
+
+| 破坏性（立刻生效） | **非破坏性（可调）** |
+|---|---|
+| **`Ctrl-M` 镜像** | **★ Mirror 修改器** |
+| **编辑模式布尔** | **★ Boolean 修改器** |
+| **编辑模式倒角** | **★ Bevel 修改器 + Bevel Weight** |
+| **手动挤出细节** | **★ 顶点组 + 修改器限定范围** |
+
+> **★ 理由：硬表面的"细节"是设计意图，应保留可改的余地。**

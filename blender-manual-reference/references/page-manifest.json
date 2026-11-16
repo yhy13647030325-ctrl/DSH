@@ -1,0 +1,311 @@
+{
+  "book": "《Blender 2.92 Manual》Blender Documentation Team",
+  "page_type": "EPUB XHTML 文件（无页码体系）",
+  "locator": "xhtml 文件路径 + 章节标题",
+  "locator_note": "EPUB 无印刷页码；本技能用 xhtml 文件路径（如 modeling/meshes/structure.xhtml）作为可回溯定位",
+  "source_epub": "Blender 2.92 Manual (Blender Documentation Team).epub",
+  "xhtml_total": 1653,
+  "xhtml_with_text": 1645,
+  "chars_total": 3225502,
+  "chars_note": "清理导航样板后的正文字符（原提取 3,580,251，剥掉 268K 导航）",
+  "strategy": "A案：按分区深度重写（深度+中等收录 84.2% 原文，其余仅索引）",
+  "deep_chars": 2716018,
+  "deep_pct": 84.2,
+  "zones": {
+    "modeling": {
+      "name_cn": "建模",
+      "files": 282,
+      "chars": 569483,
+      "pct": 17.7,
+      "level": "deep",
+      "destination": "ch01/ch02/ch03/ch05",
+      "file_list_sample": [
+        "modeling/curves/curve_display.xhtml",
+        "modeling/curves/editing/control_points.xhtml",
+        "modeling/curves/editing/curve.xhtml",
+        "modeling/curves/editing/index.xhtml",
+        "modeling/curves/editing/other.xhtml"
+      ]
+    },
+    "render": {
+      "name_cn": "渲染",
+      "files": 270,
+      "chars": 435998,
+      "pct": 13.5,
+      "level": "deep",
+      "destination": "ch08/ch09/ch10/ch11",
+      "file_list_sample": [
+        "render/cameras.xhtml",
+        "render/color_management.xhtml",
+        "render/cycles/baking.xhtml",
+        "render/cycles/features.xhtml",
+        "render/cycles/gpu_rendering.xhtml"
+      ]
+    },
+    "addons": {
+      "name_cn": "插件",
+      "files": 129,
+      "chars": 322218,
+      "pct": 10.0,
+      "level": "deep",
+      "destination": "ch19（新增）",
+      "file_list_sample": [
+        "addons/3d_view/3d_navigation.xhtml",
+        "addons/3d_view/blenderkit.xhtml",
+        "addons/3d_view/index.xhtml",
+        "addons/3d_view/math_vis_console.xhtml",
+        "addons/3d_view/measureit.xhtml"
+      ]
+    },
+    "editors": {
+      "name_cn": "编辑器",
+      "files": 144,
+      "chars": 314602,
+      "pct": 9.8,
+      "level": "deep",
+      "destination": "ch15（新增）",
+      "file_list_sample": [
+        "editors/3dview/3d_cursor.xhtml",
+        "editors/3dview/controls/index.xhtml",
+        "editors/3dview/controls/orientation.xhtml",
+        "editors/3dview/controls/pivot_point/3d_cursor.xhtml",
+        "editors/3dview/controls/pivot_point/active_element.xhtml"
+      ]
+    },
+    "animation": {
+      "name_cn": "动画与绑定",
+      "files": 116,
+      "chars": 251122,
+      "pct": 7.8,
+      "level": "deep",
+      "destination": "ch12/ch13",
+      "file_list_sample": [
+        "animation/actions.xhtml",
+        "animation/armatures/bones/editing/bone_roll.xhtml",
+        "animation/armatures/bones/editing/change_layers.xhtml",
+        "animation/armatures/bones/editing/delete.xhtml",
+        "animation/armatures/bones/editing/duplicate.xhtml"
+      ]
+    },
+    "physics": {
+      "name_cn": "物理",
+      "files": 116,
+      "chars": 220964,
+      "pct": 6.9,
+      "level": "deep",
+      "destination": "ch16（新增）",
+      "file_list_sample": [
+        "physics/baking.xhtml",
+        "physics/cloth/examples.xhtml",
+        "physics/cloth/index.xhtml",
+        "physics/cloth/introduction.xhtml",
+        "physics/cloth/settings/cache.xhtml"
+      ]
+    },
+    "sculpt_paint": {
+      "name_cn": "雕刻与绘制",
+      "files": 113,
+      "chars": 176730,
+      "pct": 5.5,
+      "level": "deep",
+      "destination": "ch04",
+      "file_list_sample": [
+        "sculpt_paint/brush/brush.xhtml",
+        "sculpt_paint/brush/brush.xhtml",
+        "sculpt_paint/brush/brush.xhtml",
+        "sculpt_paint/brush/brush.xhtml",
+        "sculpt_paint/brush/brush.xhtml"
+      ]
+    },
+    "compositing": {
+      "name_cn": "合成",
+      "files": 95,
+      "chars": 133882,
+      "pct": 4.2,
+      "level": "index",
+      "destination": "仅索引",
+      "file_list_sample": [
+        "compositing/index.xhtml",
+        "compositing/introduction.xhtml",
+        "compositing/sidebar.xhtml",
+        "compositing/types/color/alpha_over.xhtml",
+        "compositing/types/color/bright_contrast.xhtml"
+      ]
+    },
+    "grease_pencil": {
+      "name_cn": "蜡笔",
+      "files": 102,
+      "chars": 128107,
+      "pct": 4.0,
+      "level": "index",
+      "destination": "仅索引",
+      "file_list_sample": [
+        "grease_pencil/animation/index.xhtml",
+        "grease_pencil/animation/interpolation.xhtml",
+        "grease_pencil/animation/introduction.xhtml",
+        "grease_pencil/animation/tools.xhtml",
+        "grease_pencil/index.xhtml"
+      ]
+    },
+    "scene_layout": {
+      "name_cn": "场景与物体",
+      "files": 60,
+      "chars": 105412,
+      "pct": 3.3,
+      "level": "deep",
+      "destination": "ch06/ch07",
+      "file_list_sample": [
+        "scene_layout/collections/collections.xhtml",
+        "scene_layout/collections/collections.xhtml",
+        "scene_layout/collections/index.xhtml",
+        "scene_layout/collections/index.xhtml",
+        "scene_layout/collections/introduction.xhtml"
+      ]
+    },
+    "interface": {
+      "name_cn": "界面",
+      "files": 38,
+      "chars": 93722,
+      "pct": 2.9,
+      "level": "medium",
+      "destination": "并入 ch06",
+      "file_list_sample": [
+        "interface/annotate_tool.xhtml",
+        "interface/controls/buttons/buttons.xhtml",
+        "interface/controls/buttons/decorators.xhtml",
+        "interface/controls/buttons/eyedropper.xhtml",
+        "interface/controls/buttons/fields.xhtml"
+      ]
+    },
+    "video_editing": {
+      "name_cn": "视频编辑",
+      "files": 42,
+      "chars": 78721,
+      "pct": 2.4,
+      "level": "index",
+      "destination": "仅索引",
+      "file_list_sample": [
+        "video_editing/index.xhtml",
+        "video_editing/introduction.xhtml",
+        "video_editing/preview/display_mode.xhtml",
+        "video_editing/preview/index.xhtml",
+        "video_editing/preview/introduction.xhtml"
+      ]
+    },
+    "files": {
+      "name_cn": "文件与资产",
+      "files": 19,
+      "chars": 76244,
+      "pct": 2.4,
+      "level": "deep",
+      "destination": "ch17（新增）",
+      "file_list_sample": [
+        "files/blend/index.xhtml",
+        "files/blend/open_save.xhtml",
+        "files/blend/packed_data.xhtml",
+        "files/blend/previews.xhtml",
+        "files/blend/rename.xhtml"
+      ]
+    },
+    "movie_clip": {
+      "name_cn": "影片剪辑",
+      "files": 35,
+      "chars": 66630,
+      "pct": 2.1,
+      "level": "index",
+      "destination": "仅索引",
+      "file_list_sample": [
+        "movie_clip/index.xhtml",
+        "movie_clip/introduction.xhtml",
+        "movie_clip/masking/editing.xhtml",
+        "movie_clip/masking/index.xhtml",
+        "movie_clip/masking/introduction.xhtml"
+      ]
+    },
+    "advanced": {
+      "name_cn": "高级",
+      "files": 20,
+      "chars": 66148,
+      "pct": 2.1,
+      "level": "medium",
+      "destination": "ch18（新增）",
+      "file_list_sample": [
+        "advanced/app_templates.xhtml",
+        "advanced/appendices/index.xhtml",
+        "advanced/appendices/rotations.xhtml",
+        "advanced/blender_directory_layout.xhtml",
+        "advanced/command_line/arguments.xhtml"
+      ]
+    },
+    "troubleshooting": {
+      "name_cn": "故障排查",
+      "files": 23,
+      "chars": 49887,
+      "pct": 1.5,
+      "level": "deep",
+      "destination": "ch14",
+      "file_list_sample": [
+        "troubleshooting/3d_view.xhtml",
+        "troubleshooting/crash.xhtml",
+        "troubleshooting/gpu/apple/amd.xhtml",
+        "troubleshooting/gpu/apple/common.xhtml",
+        "troubleshooting/gpu/apple/intel.xhtml"
+      ]
+    },
+    "getting_started": {
+      "name_cn": "入门",
+      "files": 16,
+      "chars": 46788,
+      "pct": 1.5,
+      "level": "skim",
+      "destination": "择要",
+      "file_list_sample": [
+        "getting_started/about/community.xhtml",
+        "getting_started/about/history.xhtml",
+        "getting_started/about/index.xhtml",
+        "getting_started/about/introduction.xhtml",
+        "getting_started/about/license.xhtml"
+      ]
+    },
+    "about": {
+      "name_cn": "关于",
+      "files": 20,
+      "chars": 46659,
+      "pct": 1.4,
+      "level": "skip",
+      "destination": "跳过",
+      "file_list_sample": [
+        "about/contribute/build/index.xhtml",
+        "about/contribute/build/linux.xhtml",
+        "about/contribute/build/macos.xhtml",
+        "about/contribute/build/windows.xhtml",
+        "about/contribute/editing.xhtml"
+      ]
+    },
+    "glossary": {
+      "name_cn": "术语表",
+      "files": 1,
+      "chars": 33488,
+      "pct": 1.0,
+      "level": "deep",
+      "destination": "references/glossary.md",
+      "file_list_sample": [
+        "glossary/index.xhtml"
+      ]
+    },
+    "(root)": {
+      "name_cn": "封面",
+      "files": 4,
+      "chars": 8697,
+      "pct": 0.3,
+      "level": "skip",
+      "destination": "跳过",
+      "file_list_sample": [
+        "404.xhtml",
+        "copyright.xhtml",
+        "genindex.xhtml",
+        "index.xhtml"
+      ]
+    }
+  }
+}
