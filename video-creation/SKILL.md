@@ -87,10 +87,10 @@ node {skill_dir}/probe/probe.mjs <视频文件> [--out 输出目录]
 | [video-shotcraft](../video-shotcraft/SKILL.md) | 电影感产品宣传片：152 张镜头配方卡 + 已验收模板 + 2.5D 运镜 | 864 文件 |
 | [video-talkcraft](../video-talkcraft/SKILL.md) | 终极口播：配音→字级时间戳→SHOTBOOK 层矩阵→Remotion 成片 | 924 文件 |
 | [anything2explainer](../anything2explainer/SKILL.md) | 黑底 MG 风格科普讲解：主题→配音字幕进度条→Remotion 动画 | 209 文件 |
-| [hyperframes](../hyperframes/SKILL.md) | HTML 渲染视频：合成即 HTML，`data-*` 声明时序，运行时可 seek | 3 文件 |
+| ~~hyperframes~~（**已停用**） | HTML 渲染视频：合成即 HTML，`data-*` 声明时序，运行时可 seek | 已移至 `.dsh/skills-backup/hyperframes`，**不在当前技能目录，不可调用** |
 | [remotion](../remotion/SKILL.md) | React 视频框架逐帧精确控制：视频是帧号的函数 | 3 文件 |
 | [voxlite](../voxlite/SKILL.md) | 一句话全自动出片：Vox 风格科普短视频，4 种画风可对比 | 14 文件 |
-| [beatra](../beatra/SKILL.md) | 云端 AI 创作套件：图/视频/音乐/语音 + 社交数据 | 26 文件 |
+| ~~beatra~~（**已停用**） | 云端 AI 创作套件：图/视频/音乐/语音 + 社交数据 | 已移至 `.dsh/skills-backup/beatra`，**不在当前技能目录，不可调用** |
 
 **子技能怎么读**：确认路由目标后，直接读它的 `SKILL.md`（路径见上表），按它的流程走。本模块只负责"选对路"，不重复子技能的工艺细节。
 
