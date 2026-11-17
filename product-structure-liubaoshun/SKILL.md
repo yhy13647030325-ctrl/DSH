@@ -140,6 +140,8 @@ SOLIDWORKS（怎么在软件里落成特征树）
 
 ## 相关技能
 
+> **相关技能**：`cmf-system`（材料选择 → 选材四步 / 材料指数）、`product-injection-defects`（结构端的工艺后果，100 例真实案例）、`solidworks-practice`（装配与配合的软件实现）、`design-router`（统一路由）。
+
 - `product-injection-defects`（李忠文《精密注塑工艺与产品缺陷解决方案100例》）— **本书注塑章节的下游**。本书讲"注塑件该怎么设计"，那本讲"设计或工艺出了问题会出什么缺陷、怎么救"。
 - `design-methodology-liuguanzong` — 上游：该不该做这个产品。
 - `design-psychology-norman` — 上游：人怎么用、怎么不出错。

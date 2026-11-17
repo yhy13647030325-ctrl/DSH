@@ -140,6 +140,8 @@ description: 精密注塑产品缺陷诊断知识库（蒸馏自李忠文《精�
 
 ## 与其他技能怎么接
 
+> **相关技能**：`cmf-system`（CMF 决策 → 工艺风险对照，见其 `patterns.md` P-13）、`product-structure-liubaoshun`（结构端预防）、`design-router`（统一路由）。**本技能是这三个设计端技能的共同下游**。
+
 > **总索引**：[design-methodology-liuguanzong/references/skill-index.md](../design-methodology-liuguanzong/references/skill-index.md) —— 10 个设计技能的分工、路由表与 6 个跨技能接缝。
 
 - **上游**：`product-structure-liubaoshun`（刘宝顺《产品结构设计》第一章 1.5 注塑壳体）——**设计端预防**。本书的缺陷，很多是那本书的设计要点没做到。
