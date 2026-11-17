@@ -190,12 +190,27 @@ ch02  HEAD~1 bytes=174304 BOM=true →  HEAD bytes=174301 BOM=false
 
 | 类别 | 数量 | 处置 |
 |---|---|---|
-| **示例/占位**（`ch01-<slug>.md`、`/音标/`、`source:rfc8446`、`/abs/path/...`） | 12 | **不是断链**，是文档里的格式示例，保留 |
-| **`video-creation` 指向已停用的 hyperframes / beatra** | 2 | **已修**：改为 `~~名称~~（已停用）` + 标注实际位置 `.dsh/skills-backup/`，不再写成相对链接 |
-| **`book-to-skill` 上游文档自身缺文件** | 5 | **不动**。`guide.md` / `skill-reference.md` / `glossary.md` / `patterns.md` / `cheatsheet.md` 在该项目里确实不存在，属第三方仓库缺陷，改了会与上游冲突 |
+| **示例/占位**（`ch01-<slug>.md`、`/音标/`、`source:rfc8446`、`/abs/path/...`） | **12** | **不修**：不是断链，是文档在教"链接怎么写"，改成真链接反而错 |
+| **`video-creation` 指向已停用的 hyperframes / beatra** | 2 | **已修**：改为 `~~名称~~（已停用）` + 标注实际位置 `.dsh/skills-backup/` |
+| **`book-to-skill` 上游文档自身缺文件** | **7** | **不修**：属第三方仓库缺陷，改了会与上游冲突，升级即失效 |
 
-> **★ 遗留：`book-to-skill/docs/` 与 `book-to-skill/SKILL.md` 的 5 条断链。**
-> 这是上游项目自带的问题，**不在本仓库维护范围内**。若将来升级该技能，上游可能已修复。
+> **★★★ 2026-11-17 用户决定：上述两类（12 条示例占位 + 7 条上游缺文件）一律保持现状，不修。**
+>
+> **7 条上游缺文件的完整清单**（`book-to-skill` 项目自身没有这些文件，已实测确认）：
+>
+> | 文件:行 | 目标 | 实际情况 |
+> |---|---|---|
+> | `docs/404.md:17` | `guide.md` | 该项目 docs/ 下无此文件 |
+> | `docs/index.md:31` | `guide.md` | 同上 |
+> | `docs/index.md:32`、`:107` | `skill-reference.md` | 同上 |
+> | `SKILL.md:586` | `glossary.md` | 同上 |
+> | `SKILL.md:587` | `patterns.md` | 同上 |
+> | `SKILL.md:588` | `cheatsheet.md` | 同上 |
+>
+> 该项目 `docs/` 实际内容：`404 / architecture / faq / how-it-works / index / install / performance / usage`（**无 guide、无 skill-reference**）。
+>
+> **★ 判据：这两类断链是"检查器视角的噪声"，不是维护问题。**
+> **下次跑 `check_links.js` 看到 19 条，直接对照本节，不要再当新问题排查一遍。**
 
 ### 8.2 章节结构 96.4% 的剩余 7 处（已逐条核实，均非缺陷）
 
