@@ -241,7 +241,7 @@ ch02  HEAD~1 bytes=174304 BOM=true →  HEAD bytes=174301 BOM=false
 
 | 写法 | 例子 |
 |---|---|
-| markdown 链接 | `[脚本](scripts/x.mjs)` |
+| markdown 链接 | 方括号接圆括号的脚本相对路径（本行不用实例，避免被断链检查器误判为真链接） |
 | 行内代码 | `` `_standards/diff_wcag.js` `` |
 | 命令行 | `node _standards/sc_index.js` |
 
