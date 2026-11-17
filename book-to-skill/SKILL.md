@@ -651,6 +651,7 @@ PYTHON_BIN="${PYTHON_BIN:-python3}"
 if ! command -v "$PYTHON_BIN" >/dev/null 2>&1; then
   PYTHON_BIN="python"
 fi
+```
 
 Remove **the work directory this run actually used** — the `Workdir ->` path from the
 extraction output, which is also stored as `workdir` in `metadata.json`. Never delete a

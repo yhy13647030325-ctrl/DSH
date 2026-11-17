@@ -13,6 +13,7 @@
 | `encoding_audit.js` | 编码健康：首部 BOM / 杂散 U+FEFF / 非法 UTF-8 / 混用行尾 | 四项均应为 0 |
 | `check_links.js` | 相对链接断链（已屏蔽行内代码与围栏代码块） | 应为 0 |
 | `check_numbering.js` | 判据编号连续性 + 「共 N 条」声明与实际行数是否一致 | 均应为 0 |
+| `check_fences.js` | 代码围栏是否全部闭合（未闭合会吞掉后续正文） | 未闭合应为 0 |
 
 ## 运行
 
@@ -21,6 +22,7 @@ node audit/full_acceptance.js
 node audit/encoding_audit.js
 node audit/check_links.js
 node audit/check_numbering.js
+node audit/check_fences.js
 ```
 
 ## 依赖与降级
