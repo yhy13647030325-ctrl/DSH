@@ -1,6 +1,9 @@
 # 书籍技能章节的统一格式规范
 
-> **适用范围**：本项目所有"从书蒸馏"的技能章节（共 13 个技能 / 约 4000 页）。
+> **适用范围**：本项目所有"从书蒸馏"的技能章节（**截至 2026-11-17：19 个技能 / 195 章**）。
+> ——**原规范制定时为 13 个技能 / 约 4000 页**；2026-11-16~17 新增 6 个从书蒸馏技能
+> （`inclusive-accessibility-design`、`web-accessibility-cn`、`user-research-methods`、
+> `usability-testing`、`cmf-system`、`accessibility-standards`），它们**同样适用本规范**。
 > **制定依据**：`solidworks-practice` 13 章重做的实践（54,307 → 271,420 字符，+400%）。
 >
 > **核心原则**：**统一"接口"，不统一"骨架"** ——
@@ -111,7 +114,9 @@
 
 ### 类型 A：操作/技术类 → **判据表**
 
-**适用**：solidworks-*、blender-*、product-injection-defects
+**适用**：solidworks-*、blender-*、product-injection-defects、
+**accessibility-standards**（标准条文类，全部用判据表）、
+**usability-testing / cmf-system / user-research-methods**（方法执行类，判据表为主）
 
 **格式**：
 
@@ -139,7 +144,9 @@
 
 **适用**：world-modern-design-history、design-psychology-norman、
 ergonomics-ding-yulan、design-elements-hannah、product-design-styling-dabbs、
-visual-dynamics-industrial-design
+visual-dynamics-industrial-design、
+**inclusive-accessibility-design**（理论书，全部用概念-论点表）、
+**web-accessibility-cn**（理论+实践，全部用概念-论点表）
 
 **格式**：
 
