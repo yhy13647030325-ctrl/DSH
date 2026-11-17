@@ -139,6 +139,10 @@ description: Blender 2.92 官方参考手册知识库（蒸馏自 Blender Docume
 |---|---|
 | 约束（含 Transformation） | [ch12-constraints](chapters/ch12-constraints.md) |
 | 骨骼与绑定 | [ch13-armature-rigging](chapters/ch13-armature-rigging.md) |
+| **减面与重拓扑** | [ch15-decimate-remesh](chapters/ch15-decimate-remesh.md) |
+| **骨架绑定实战** | [ch16-armature-practice](chapters/ch16-armature-practice.md) |
+| **几何节点** | [ch17-geometry-nodes](chapters/ch17-geometry-nodes.md) |
+| **三个硬表面必需操作**（Apply Scale / Knife / 贴图密度） | [ch18-apply-knife-texel](chapters/ch18-apply-knife-texel.md) |
 
 ### 排查与术语
 
