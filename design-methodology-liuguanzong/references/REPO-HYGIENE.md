@@ -144,17 +144,54 @@ ch02  HEAD~1 bytes=174304 BOM=true →  HEAD bytes=174301 BOM=false
 
 ## 六、检查清单（每次大批量改文件后跑一遍）
 
-> **★ 2026-11-17 起**：`full_acceptance.js` / `encoding_audit.js` / `check_links.js` / `check_numbering.js`
-> **已迁入仓库 `audit/` 并便携化**，请用 `node audit/xxx.js`。
-> 其余 `_zl\*.js` 仍为一次性的过程脚本，未迁移。
+> **★ 2026-11-17 起**：以下 **5 个脚本已迁入仓库 `audit/` 并便携化**，
+> 一律用 `node audit/xxx.js` 调用（路径解析基于 `__dirname`，换机器可用）。
+> 其余 `_zl\*.js` 仍为一次性的过程脚本，未迁移，见 §六之二。
 
 ```
-□ node audit/encoding_audit.js       BOM=0 / strayU+FEFF=0 / invalidUTF8=0 / MIXED=0
-□ （行尾分布：见 audit/README.md）         索引 i/crlf=0（工作区 w/crlf 允许非 0）
-□ node audit/full_acceptance.js      31 skills 全 PASS
-□ node _zl\check_xref.js（未迁移）           技能名引用无悬空
-□ node _zl\verify_router.js（未迁移）        路由表结构校验
+□ node audit/encoding_audit.js      BOM=0 / strayU+FEFF=0 / invalidUTF8=0 / MIXED=0
+□ node audit/check_links.js         断链=0
+□ node audit/check_numbering.js     编号表 0 重复 / 「共 N 条」0 不符
+□ node audit/check_fences.js        未闭合围栏=0
+□ node audit/full_acceptance.js     31 skills 全 PASS
 ```
+
+### 六之一、五项判据对照
+
+> **★ 只写"什么算通过"，不写死具体数值。**
+> 技能数、字符数、围栏数、编号表数都会随内容增长而变，写死必然过期 ——
+> **本文档初稿就是活例子：写完当轮的数字，下一轮改了两处内容后就不再对。**
+> **要对比基线，跑脚本看输出，不要照抄文档里的数字。**
+
+| 脚本 | 什么算通过 | 说明 |
+|---|---|---|
+| `encoding_audit.js` | 首部 BOM=0 / 杂散 U+FEFF=0 / 非法 UTF-8=0 / 混用行尾=0 | 四项都必须是 0，无"允许值" |
+| `check_links.js` | 断链=0 | 已屏蔽行内代码与围栏内的示例 |
+| `check_numbering.js` | 编号表重复=0 且「共 N 条」不符=0 | 表数与声明数本身会变，只看两个 0 |
+| `check_fences.js` | 未闭合围栏=0 | 围栏总数会变，只看未闭合 |
+| `full_acceptance.js` | 每个技能 PASS，末行 `★ ALL PASS` | 规模数字随内容变，不设阈值 |
+
+> **★ 页码越界校验需要外部语料**（不在仓库内）。
+> 缺语料时 `full_acceptance.js` 会打印提示并跳过该项，**不崩溃**。
+> 指定方式：`$env:DSH_AUDIT_TXT = "<语料目录>"`。
+>
+> **判断有无语料的方法**：看输出末行的页码引用数——
+> 有语料时是四位数（如 5,547），无语料时是 **0**。
+
+### 六之二、仍在 `_zl\` 的专项校验器（未迁移）
+
+这 4 个仍在被文档引用，但**尚未便携化**，换机器不可用：
+
+```
+□ node _zl\check_xref.js              技能名交叉引用无悬空
+□ node _zl\verify_router.js           路由表结构校验（19 口径）
+□ node _zl\check_chapter_structure.js 章节六段结构
+□ node _zl\audit_cn.js                web-accessibility-cn 专项（含引文回源）
+```
+
+> **★ 迁移方法已跑通**：把写死的仓库根改为 `path.resolve(__dirname, '..')`，
+> 产出文件落到脚本同级目录，语料类输入用环境变量 + 缺失降级。
+> 完整案例见 `audit/HISTORY.md`（含当时修掉的 4 个错误）。
 
 > **★ 判断原则：看 `i/`（索引）不看 `w/`（工作区）。**
 > **索引干净 = 仓库干净；工作区行尾是检出细节，不是缺陷。**
