@@ -1,4 +1,4 @@
-﻿# 术语表
+# 术语表
 
 > 源书：Sarah Horton & Whitney Quesenberry《A Web for Everyone: Designing Accessible User Experiences》（2014）
 > 中译：《兼济天下·用户无障碍体验的可访问性设计》（机械工业出版社，2015，王允雨译）

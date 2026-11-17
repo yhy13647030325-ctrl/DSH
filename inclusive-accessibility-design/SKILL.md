@@ -23,6 +23,7 @@ description: 《Inclusive Design: Design for the Whole Population》与《Design
 >
 > 另需注意：原计划的第三本源书经核验**不是包容性设计著作**（其版权页实为 `Handbook of Research on Applying Universal Design for Learning Across Disciplines`，是 UDL 教育书，且文本层不可读），**已弃用，本技能不含任何 2021 年版内容**。
 > 需要上述标准时，请查标准原文；本技能不替代。
+> **2010 年后标准的具体条文（WCAG 2.1/2.2 新增条目、EN 301 549 v3.2.1 第 4/5/8/9 章、三级一致性模型、中国法规现行状态）→ 查技能 `accessibility-standards`。**
 
 ---
 
