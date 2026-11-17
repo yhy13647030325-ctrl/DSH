@@ -28,8 +28,8 @@ hide:
 Turn any book or document into a structured, on-demand agent skill — named frameworks, decision rules, and anti-patterns. <strong>Structure, not a summary.</strong>
 </p>
 
-[Get started](guide.md){ .md-button .md-button--primary }
-[Skill reference](skill-reference.md){ .md-button }
+Get started（上游未提供 `guide.md`）{ .md-button .md-button--primary }
+Skill reference（上游未提供 `skill-reference.md`）{ .md-button }
 [GitHub](https://github.com/virgiliojr94/book-to-skill){ .md-button }
 
 ---
@@ -104,7 +104,7 @@ book-to-skill /path/to/book.pdf --mode text
 
     The measured Discovery Loop Tax and real per-conversion token cost.
 
--   :material-book-open-page-variant:{ .lg .middle } __[Skill Reference](skill-reference.md)__
+-   :material-book-open-page-variant:{ .lg .middle } __Skill Reference（上游未提供 `skill-reference.md`）__
 
     ---
 

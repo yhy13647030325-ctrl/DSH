@@ -219,7 +219,7 @@ visual-dynamics-industrial-design、
 ```markdown
 | 章节 | 主题 | 内容要点 |
 |---|---|---|
-| [ch01](chapters/ch01-xxx.md) | 主题（**p1–p14 全 14 页**） | **2.0 万**：要点1、要点2、**N 条判据** |
+| ch01（`chapters/ch01-xxx.md`） | 主题（**p1–p14 全 14 页**） | **2.0 万**：要点1、要点2、**N 条判据** |
 ```
 
 **三列硬要求**：

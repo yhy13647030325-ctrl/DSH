@@ -571,8 +571,8 @@ the relevant chapter file before answering.
 
 | # | Title | Key Frameworks |
 |---|-------|----------------|
-| [ch01](chapters/ch01-<slug>.md) | <Title> | <framework1>, <framework2> |
-| [ch02](chapters/ch02-<slug>.md) | <Title> | <framework1>, <framework2> |
+| ch01 | <Title> | <framework1>, <framework2> |
+| ch02 | <Title> | <framework1>, <framework2> |
 ...
 
 ## Topic Index
@@ -583,9 +583,9 @@ the relevant chapter file before answering.
 
 ## Supporting Files
 
-- [glossary.md](glossary.md) — all key terms with definitions
-- [patterns.md](patterns.md) — all techniques and design patterns
-- [cheatsheet.md](cheatsheet.md) — quick reference tables and decision guides
+- `glossary.md` — all key terms with definitions（**上游项目未提供此文件**）
+- `patterns.md` — all techniques and design patterns（**上游项目未提供此文件**）
+- `cheatsheet.md` — quick reference tables and decision guides（**上游项目未提供此文件**）
 
 ---
 
