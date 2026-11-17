@@ -98,7 +98,7 @@ is layered:
   every parser's output before metrics or `full_text.txt`, so invisible
   document-borne instructions never reach the agent. Reports the removal count;
   rejects a source with no visible content left.
-- **DOCX XXE / Billion-Laughs guard** (`parsers/docx.py`) — rejects any XML part
+- **DOCX XXE / Billion-Laughs guard** (`book_to_skill/parsers/docx.py`) — rejects any XML part
   declaring a DTD or entities before parsing.
 - **Subprocess argument-injection** — file paths are absolutised before reaching
   `pdftotext` / `pdfinfo` / `ebook-convert`, so a `-`-leading filename can't be read

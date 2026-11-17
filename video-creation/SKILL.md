@@ -61,7 +61,7 @@ probe/probe.mjs 探针
 
 ```bash
 # 1) 探针（自动定位 ffmpeg/ffprobe，无需系统安装）
-node {skill_dir}/probe/probe.mjs <视频文件> [--out 输出目录]
+node probe/probe.mjs <视频文件> [--out 输出目录]
 
 # 2) 读画像，向用户确认意图（复刻/改编/混剪）
 # 3) 按意图分派：
@@ -106,7 +106,7 @@ node {skill_dir}/probe/probe.mjs <视频文件> [--out 输出目录]
 | edge-tts（Python 包） | voxlite 带情绪风格自然配音 | ✅ 已装于 Python314（免 API Key） |
 | 中文字体（msyhbd.ttc 等） | voxlite 中文渲染、字幕 | ✅ 系统 `C:/Windows/Fonts/` |
 | Remotion | shotcraft / talkcraft / explainer / remotion | 子技能自带（`runtime/` 或模板内） |
-| playwright | talkcraft 无头浏览器 | 子技能 `check-runtime.sh` 装 |
+| playwright | talkcraft 无头浏览器 | 子技能 `video-talkcraft/runtime/check-runtime.sh` 装 |
 | Beatra 账号 + 积分 | beatra 云端生成（图/视频/音乐/语音/克隆） | ⚠️ 需登录；规划/查询类操作免费 |
 
 **ffmpeg 定位顺序**：`FFMPEG_PATH` 环境变量 → `PATH` → 本机已知安装位置 → `~/.dsh/_work/ffmpeg-tool/node_modules`（ffmpeg-static 优先于 @ffmpeg-installer）。

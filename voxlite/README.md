@@ -38,7 +38,7 @@ pip install edge-tts imageio-ffmpeg
 
 ## 流水线概览
 
-1. 解析主题 → 2. 搜最新真实数据（实时检索，不编造，标注来源与检索日期）→ 3. 拆 3–6 个叙事拍 → 4. 逐拍 ImageGen 关键帧（9:16 + 安全区 + 风格锚点句）→ VideoGen 图生视频（每段 ≤ 8s，默认 6s）→ 5. ffmpeg 拼接成单条 → 6. `tts_natural.py` 生成配音 + 字幕轴 → `finalize.py` 画幅归一 + ASS 字幕 + 混流 → 交付。
+1. 解析主题 → 2. 搜最新真实数据（实时检索，不编造，标注来源与检索日期）→ 3. 拆 3–6 个叙事拍 → 4. 逐拍 ImageGen 关键帧（9:16 + 安全区 + 风格锚点句）→ VideoGen 图生视频（每段 ≤ 8s，默认 6s）→ 5. ffmpeg 拼接成单条 → 6. `scripts/tts_natural.py` 生成配音 + 字幕轴 → `finalize.py` 画幅归一 + ASS 字幕 + 混流 → 交付。
 
 ## 目录结构
 
@@ -48,7 +48,7 @@ voxlite/
 ├── references/           # 视觉规范 / 调色板 / 风格预设
 ├── assets/sfx/           # 程序合成音效素材（首跑自动生成，免版权）
 └── scripts/
-    ├── tts_natural.py    # 自然化中文配音 + 对齐字幕轴
+    ├── scripts/tts_natural.py    # 自然化中文配音 + 对齐字幕轴
     ├── finalize.py       # 画幅归一 + 安全区 ASS 字幕 + 配音/音效混流
     ├── sfx_mix.py        # 按字幕时间轴铺音效，生成 sfx_track.wav
     ├── sfx_lib.py        # 纯 Python 音效合成库（whoosh/pop/ding/...）

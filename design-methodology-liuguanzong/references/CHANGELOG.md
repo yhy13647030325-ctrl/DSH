@@ -1251,6 +1251,9 @@ python validate-page-citations.py --skill XXX --init-manifest  # 生成模板
 **③ 未纳入 `validate-skill-index.py` 和本脚本的统一入口**
 ——目前是两个独立脚本，将来可合并为 `validate-all.py`。
 
+> **⚠ 脚本留存说明**：本节列出的验证脚本为**当时的临时工具，未随仓库保留**（工作区 `_re4/` 已清理）。
+> 记录脚本名是为了保留审计过程可追溯；**若要复跑这些校验，需按本节描述的方法重写**。
+
 
 ---
 

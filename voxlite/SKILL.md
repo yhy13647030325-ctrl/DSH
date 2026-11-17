@@ -66,8 +66,8 @@ description: VoxLite — 把一句话或一段文案直接做成 Vox 风格科�
 5. **ffmpeg 拼接成单条静音片**：用 ffmpeg（经 `imageio-ffmpeg` 自带二进制，路径 `python -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())"`）把多段按叙事顺序 `concat` 为一条 MP4（各段已是同比例关键帧图生视频，直接 concat 即可）。此步产出**单文件静音成片**；画幅归一化交给第 6 步的 `finalize.py` 统一处理，勿在此步提前 scale。
 6. **配音 + 字幕 + 安全区混流成片（默认带声音，见 §11；本步是流水线最后一步）**：
    - 若启用 §10 运动图形层，应先作用于第 5 步的拼接静音片，再进入本步。
-   - 用 `tts_natural.py` 脚本从分句脚本生成**带自然停顿与音频后处理**的中文配音，并输出**与配音逐句对齐**的字幕时间轴。
-   - 用 `sfx_mix.py` 按字幕时间轴自动生成音效轨（转场 whoosh / 高亮揭示 pop / 结尾 ding，详见 §11.6），再交给 `finalize.py` 叠加。
+   - 用 `scripts/tts_natural.py` 脚本从分句脚本生成**带自然停顿与音频后处理**的中文配音，并输出**与配音逐句对齐**的字幕时间轴。
+   - 用 `scripts/sfx_mix.py` 按字幕时间轴自动生成音效轨（转场 whoosh / 高亮揭示 pop / 结尾 ding，详见 §11.6），再交给 `finalize.py` 叠加。
    - 用 `finalize.py` 脚本完成四件事：画幅归一为抖音标准 9:16（1080×1920，不足处上下补深色条）、按安全区算法从下往上计算字幕 y 坐标、烧字幕、混流（配音 + 音效轨，音效默认低于人声）。
    - 若用户指令含「静音/无声」，则跳过本步，只交付静音画面。
 7. **落盘 + 交付 + 清理**：单条视频存**本任务专属文件夹**，随消息交付；同轮附一句「做了什么」（主题/数据来源/风格/比例/时长/是否有配音字幕/积分消耗），**不在生成前停下来等确认**。成片交付后**立即清理本任务文件夹里的临时中间文件**（关键帧图、分镜视频、配音分段、字幕轴、拼接静音片等，详见 §11.5），只保留成片与可复用源。因为清理脚本只作用于本任务文件夹（见 §0 隔离约定），所以**不会误删其他未完成任务的临时文件**。
@@ -387,7 +387,7 @@ drawbox=x='iw*0.20':y='h*0.345':w='if(lt(t,13.5),0,min((t-13.5)*230, iw*0.6))':h
 - 拍3（揭示,6s）：数完了——整整 11 块方糖，就在这杯里。
 - 拍4（对比,6s）：世卫说一天别超 25 克。你这一杯，直接干完两天的量。
 
-### 11.2 自然化配音脚本 `tts_natural.py`（推荐）
+### 11.2 自然化配音脚本 `scripts/tts_natural.py`（推荐）
 > 依赖（首次运行前）：`python -m pip install edge-tts imageio-ffmpeg`（ffmpeg 二进制由 imageio-ffmpeg 提供，脚本通过 `import imageio_ffmpeg` 调用）。脚本路径：Windows `$USERPROFILE/.workbuddy/skills/voxlite/scripts/`，Mac/Linux `$HOME/.workbuddy/skills/voxlite/scripts/`。
 不要整段丢给 edge-tts，否则会有浓重播报腔。用脚本做四件事：
 0. **按语义自动套情绪风格**：疑问=chat、揭示=enthusiastic、转折=serious、惋惜=empathetic、安利=cheerful、平述=narration-relaxed（详见上），让配音有表情、去平铺直叙；可逐句 `style`/`degree` 覆盖；
@@ -434,7 +434,7 @@ python "$SKILL_DIR/scripts/tts_natural.py" \
 > 情绪风格仅部分声音支持：`XiaoxiaoNeural`/`YunxiNeural`/`XiaoyiNeural` 较全，`YunjianNeural` 仅支持 chat/newscast/narration-relaxed/sports 等少量风格。若所选声音不支持该风格，脚本会自动降级为纯调速（不报错）。`degree`（1.0–2.0）控制情绪强度，默认按语义 1.1–1.6。
 
 > 备注：当前默认用 edge-tts（微软免费神经语音，免 API Key，支持情绪风格）。若想要更进一步的情感/拟真，可选升级：
-> - **OpenAI `gpt-4o-mini-tts`**（廉价，支持 `instructions` 自然语言情绪引导，需 API Key）——把 `tts_natural.py` 的 TTS 调用层换成 OpenAI 即可；
+> - **OpenAI `gpt-4o-mini-tts`**（廉价，支持 `instructions` 自然语言情绪引导，需 API Key）——把 `scripts/tts_natural.py` 的 TTS 调用层换成 OpenAI 即可；
 > - **本地大模型（CosyVoice2 / Fish-Speech / ChatTTS）**——情感最自然，但需本地 GPU，安装重；无 GPU 环境不建议。
 
 ### 11.3 画幅归一化 + 安全区字幕 + 混流：`finalize.py`
@@ -513,7 +513,7 @@ rm -rf __pycache__
 
 ### 11.6 音效（SFX，让视频更"高级"）
 
-**不加背景音乐**（版权 + 与短视频调性不符），改为在**转场 / 揭示瞬间精确触发音效**，提升质感与节奏感。音效全部由 `sfx_lib` 程序合成（免版权、离线、零 API），首次运行 `sfx_mix.py` 自动生成 `assets/sfx/*.wav`，无需手动准备。
+**不加背景音乐**（版权 + 与短视频调性不符），改为在**转场 / 揭示瞬间精确触发音效**，提升质感与节奏感。音效全部由 `sfx_lib` 程序合成（免版权、离线、零 API），首次运行 `scripts/sfx_mix.py` 自动生成 `assets/sfx/*.wav`，无需手动准备。
 
 **音效类型表：**
 
@@ -527,7 +527,7 @@ rm -rf __pycache__
 | `impact` | 重击 / 强调落地 | 低频冲击 |
 | `chime` | 结尾铃音 | 双音铃 |
 
-**自动派生（推荐，无需手写）**：`sfx_mix.py --subs subs.json` 会读字幕时间轴，自动在「转场间隔 → whoosh」「`**高亮**`出现 → pop」「结尾 → ding」三个位置铺音效。
+**自动派生（推荐，无需手写）**：`scripts/sfx_mix.py --subs subs.json` 会读字幕时间轴，自动在「转场间隔 → whoosh」「`**高亮**`出现 → pop」「结尾 → ding」三个位置铺音效。
 
 **手动覆盖 / 追加**：传 `--sfx sfx.json` 指定任意时刻的音效（会叠加在自动事件之上）：
 ```json
@@ -539,9 +539,9 @@ rm -rf __pycache__
 ```
 `t` = 触发秒数；`type` = 上表类型；`gain` = 该音效音量（0–1，默认 0.3）。
 
-**音量铁律**：音效是"点缀"不是"主角"。`sfx_mix.py` 单事件默认增益 0.25–0.3，`finalize.py` 叠加时再降 0.85× 并置于配音之下——**人声永远比音效响**，音效只负责"点睛"，绝不允许盖过旁白或喧宾夺主。若某拍音效过响，调低该事件的 `gain`。
+**音量铁律**：音效是"点缀"不是"主角"。`scripts/sfx_mix.py` 单事件默认增益 0.25–0.3，`finalize.py` 叠加时再降 0.85× 并置于配音之下——**人声永远比音效响**，音效只负责"点睛"，绝不允许盖过旁白或喧宾夺主。若某拍音效过响，调低该事件的 `gain`。
 
-> 静音模式（§11.4）下通常不加音效；若用户要"静音画面但保留转场音效"，可单独跑 `sfx_mix.py` 并给 `finalize.py` 传 `--sfx`（不传 `--audio`）。
+> 静音模式（§11.4）下通常不加音效；若用户要"静音画面但保留转场音效"，可单独跑 `scripts/sfx_mix.py` 并给 `finalize.py` 传 `--sfx`（不传 `--audio`）。
 
 
 
