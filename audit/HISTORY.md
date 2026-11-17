@@ -108,3 +108,84 @@ node audit/full_acceptance.js
 - `audit/README.md` —— 四个脚本各自检查什么、判定标准、降级行为
 - `design-methodology-liuguanzong/references/REPO-HYGIENE.md` —— 全部检查项的
   发现、误报与教训（§七 校验器误报、§十一 编号检查 10 版迭代、§十三 页码口径三次修正、§十五 预装技能不该审计）
+
+---
+
+## 八、第二批迁入：4 个专项校验器（2026-11-17 同日）
+
+第一批迁了 5 个通用检查脚本（见 §一~§五）。同日把剩下 4 个项目专用校验器也迁了。
+
+| 脚本 | 它校验什么 | 特殊依赖 |
+|---|---|---|
+| `check_xref.js` | 技能名交叉引用是否都指向真实技能 | 无 |
+| `verify_router.js` | `design-router` 路由表结构与 19 口径 | 无 |
+| `check_chapter_structure.js` | 章节六段结构齐全率 | 无 |
+| `audit_cn.js` | `web-accessibility-cn` 专项（含 953 条引文回源） | **需要原文语料** `jianji-tianxia.txt` |
+
+### 8.1 改造要点
+
+与第一批同一套方法：
+
+| 项 | 原版 | 现行版 |
+|---|---|---|
+| 仓库根 | `D:\deepseek 工作\.dsh\skills` | `path.resolve(__dirname, '..')` |
+| 子技能目录 | 绝对路径 | `path.join(ROOT, 'web-accessibility-cn')` |
+| 外部语料 | 写死 `_zl/txt/jianji-tianxia.txt` | `DSH_AUDIT_CORPUS` 环境变量 → 否则猜 `../../../_zl/txt/` → 都没有则跳过并退出 0 |
+
+### 8.2 迁移中修掉的 3 个错误
+
+| # | 错误 | 现象 | 根因 |
+|---|---|---|---|
+| 1 | `audit_cn.js` 引用了未定义的 `ROOT` | `ReferenceError: ROOT is not defined` | 我把 `const DIR = '<abs>/web-accessibility-cn'` 改成了 `path.join(ROOT, ...)`，但没补 `ROOT` 的定义 |
+| 2 | 语料默认路径少一级 | 提示找不到 `D:\deepseek 工作\.dsh\_zl\txt\...` | `audit/` 的上一级是仓库根，再上一级是 `.dsh`，**工作区还得再上一级** —— 应为 `../../../_zl` |
+| 3 | `check_xref.js` 把包名当技能名 | 报 `REPO-HYGIENE.md → archify-repository` 悬空 | `archify-repository` 是描述 npm 包改写时的字符串，不是技能引用 |
+
+> **★ 第 3 个是典型的"检查器误报"**，修法是在匹配后加**上下文排除**：
+> 若同一行含 `package.json` / `name:` / `version` / `安装改写` / `repository` 等元信息词，
+> 或名字以 `-repository` 结尾，则不计为技能引用。
+
+### 8.3 验证
+
+9 个脚本从**仓库内新位置**逐个实跑，全部 `exit=0`：
+
+```
+full_acceptance.js           ★ ALL PASS
+encoding_audit.js            BOM/U+FEFF/invalid/MIXED 全 0
+check_links.js               ★ 无断链
+check_numbering.js           不一致 0 处
+check_fences.js              ★ 所有围栏均正常闭合
+check_xref.js                ★ 交叉引用全部有效（本地 + 外部两类均已核对）
+verify_router.js             ALL PASS
+check_chapter_structure.js   ★ 全部 195 章结构齐全
+audit_cn.js                  ★ ALL PASS ★（953/953 引文可回源，100.00%）
+```
+
+> **★ `audit_cn.js` 的语料是自动找到的**（未设环境变量，靠 `../../../_zl/txt/` 猜中）。
+> 说明默认路径猜得对；换机器若猜不到，会打印提示并退出 0，不崩溃。
+
+### 8.4 现在 audit/ 的完整构成
+
+```
+audit/
+├── README.md                      用途、运行、依赖与降级
+├── HISTORY.md                     本文档
+├── full_acceptance.js             全库总览
+├── encoding_audit.js              编码健康
+├── check_links.js                 相对链接断链
+├── check_numbering.js             判据编号 + 声明一致性
+├── check_fences.js                代码围栏闭合
+├── check_xref.js                  技能名交叉引用
+├── verify_router.js               路由表结构
+├── check_chapter_structure.js     章节六段结构
+└── audit_cn.js                    web-accessibility-cn 专项
+```
+
+**9 个脚本，全部便携化，全部从仓库路径实跑通过。**
+
+### 8.5 仍未迁移的
+
+`_zl/` 下还有 **260+ 个**脚本，均为一次性过程工具（数据生成、单次排查、下载抓取），
+**不建议迁移**：它们只对当时那次操作有效，无复用价值。
+
+> **★ 数量是动态的**（迁移时会向 `_zl/_portable*/` 写中间产物），
+> 想查当前值直接数目录，不要在文档里记具体数字。

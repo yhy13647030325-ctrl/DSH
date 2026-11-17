@@ -14,6 +14,10 @@
 | `check_links.js` | 相对链接断链（已屏蔽行内代码与围栏代码块） | 应为 0 |
 | `check_numbering.js` | 判据编号连续性 + 「共 N 条」声明与实际行数是否一致 | 均应为 0 |
 | `check_fences.js` | 代码围栏是否全部闭合（未闭合会吞掉后续正文） | 未闭合应为 0 |
+| `check_xref.js` | 技能名交叉引用是否都指向真实技能 | 悬空应为 0 |
+| `verify_router.js` | `design-router` 路由表结构与 19 口径 | ALL PASS |
+| `check_chapter_structure.js` | 章节六段结构（章节头/总纲/逐节展开/内容表/本章空白/章间连接） | 齐全率应 100% |
+| `audit_cn.js` | `web-accessibility-cn` 专项：章数/索引/页码/逐字引文回源/占位符 | ALL PASS |
 
 ## 运行
 
@@ -23,6 +27,10 @@ node audit/encoding_audit.js
 node audit/check_links.js
 node audit/check_numbering.js
 node audit/check_fences.js
+node audit/check_xref.js
+node audit/verify_router.js
+node audit/check_chapter_structure.js
+node audit/audit_cn.js
 ```
 
 ## 依赖与降级
