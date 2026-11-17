@@ -28,8 +28,8 @@
 ### 复跑校验
 
 ```bash
-node "D:\deepseek 工作\_zl\encoding_audit.js"   # BOM / stray U+FEFF / invalid UTF-8 / 混用行尾
-node "D:\deepseek 工作\_zl\eol_diagnose.js"     # 索引 vs 工作区的行尾分布
+node audit/encoding_audit.js        # BOM / stray U+FEFF / invalid UTF-8 / 混用行尾
+# 行尾分布（可选，见 audit/README.md）
 ```
 
 判据：
@@ -138,18 +138,22 @@ ch02  HEAD~1 bytes=174304 BOM=true →  HEAD bytes=174301 BOM=false
 |---|---|
 | **写 md** | 用 `write` 工具，或用 node `fs.writeFileSync`（都不写 BOM） |
 | **PowerShell 写文本** | 用 `[System.IO.File]::WriteAllText($p, $t, [System.Text.UTF8Encoding]::new($false))`，**不要用 `Set-Content -Encoding utf8`** |
-| **提交前** | 跑一次 `node _zl\encoding_audit.js`，确认 `[1] leading BOM = 0` |
+| **提交前** | 跑一次 `node audit/encoding_audit.js`，确认 `[1] leading BOM = 0` |
 
 ---
 
 ## 六、检查清单（每次大批量改文件后跑一遍）
 
+> **★ 2026-11-17 起**：`full_acceptance.js` / `encoding_audit.js` / `check_links.js` / `check_numbering.js`
+> **已迁入仓库 `audit/` 并便携化**，请用 `node audit/xxx.js`。
+> 其余 `_zl\*.js` 仍为一次性的过程脚本，未迁移。
+
 ```
-□ node _zl\encoding_audit.js       BOM=0 / strayU+FEFF=0 / invalidUTF8=0 / MIXED=0
-□ node _zl\eol_diagnose.js         索引 i/crlf=0（工作区 w/crlf 允许非 0）
-□ node _zl\full_acceptance.js      31 skills 全 PASS
-□ node _zl\check_xref.js           技能名引用无悬空
-□ node _zl\verify_router.js        路由表结构校验
+□ node audit/encoding_audit.js       BOM=0 / strayU+FEFF=0 / invalidUTF8=0 / MIXED=0
+□ （行尾分布：见 audit/README.md）         索引 i/crlf=0（工作区 w/crlf 允许非 0）
+□ node audit/full_acceptance.js      31 skills 全 PASS
+□ node _zl\check_xref.js（未迁移）           技能名引用无悬空
+□ node _zl\verify_router.js（未迁移）        路由表结构校验
 ```
 
 > **★ 判断原则：看 `i/`（索引）不看 `w/`（工作区）。**
